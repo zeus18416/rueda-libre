@@ -1,0 +1,17 @@
+URL: http://127.0.0.1:5500/practicas/rueda-libre/index.html
+Protocolo: http
+Host: 127.0.0.1
+Port:5500
+Rute: ~/practicas/rueda-libre/index.html
+Request method: GET
+Status code: 304 Not Modified
+
+URL: http://127.0.0.1:5500/practicas/rueda-libre//promociones.html
+Cannot GET /practicas/rueda-libre//promociones.html
+Status code: 404 Not Found (Pagina no encontrada)
+
+Roles
+PAgina web = Rueda libre
+html: Estructura de la pagina web
+CSS: Estilos de la pagina web
+JavScript: Hace que la pagina tenga acciones, animaciones y comportamiento de la pagina web
