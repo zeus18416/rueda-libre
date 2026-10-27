@@ -1,53 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contacto, reservas y horarios de atencion">
-  <title>Reservas | Rueda Libre</title>
-</head>
-<body>
 
-  <nav>
-    <ul>
-      <li><a href="../index.html">Inicio</a></li>
-      <li><a href="tarifas.html">Tarifas y rutas</a></li>
-      <li><a href="reservas.html">Reservas</a></li>
-    </ul>
-  </nav>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacto, reservas y horarios de atencion">
+    <title>Reservas | Rueda Libre</title>
+  </head>
 
-  <header>
-    <h1>Reserva tu bicicleta</h1>
-  </header>
+  <body>
 
-  <main>
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>
-        Para consultas y reservas provisionales, escríbenos a: 
-        <a href="mailto:info@ruedalibre.com">info@ruedalibre.com</a>
-      </p>
-    </section>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="tarifas.html">Tarifas y rutas</a></li>
+        <li><a href="reservas.html">Reservas</a></li>
+      </ul>
+    </nav>
 
-    <section id="horarios">
-      <h2>Horario de Atención</h2>
-      <dl>
-        <dt>Lunes a viernes</dt>
-        <dd>7:00 a. m. - 7:00 p. m.</dd>
+    <header>
+      <h1>Reserva tu bicicleta</h1>
+    </header>
 
-        <dt>Sábados, domingos y festivos</dt>
-        <dd>6:00 a. m. - 2:00 p. m.</dd>
-      </dl>
-    </section>
-  </main>
+    <main>
+      <section id="contacto">
+        <h2>Contacto</h2>
+        <p>
+          Para consultas y reservas provisionales, escríbenos a:
+          <a href="mailto:info@ruedalibre.com">info@ruedalibre.com</a>
+        </p>
+      </section>
+      <from action="#" method="post">
+        <fieldset id="formulario">
+          <legend>Tus datos</legend>
+          <p>
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </p>
+          <p>
+            <label for="cc">Numero de Cedula</label>
+            <input type="text" id="cc" name="cc" pattern="[0-9]{10}" placeholder="ej:5091230 Hola como te " required>
+          </p>
+          <p>
+            <label for="correo">correo electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+          </p>
+          <p>
+            <label for="tel">Numeor de telefono:</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" required>
+          </p>
+        </fieldset>
+        <fieldset id="alquiler">
+          <legend>Tu alquiler</legend>
+          <p>
+            <label for=""
+          </p>
+        </fieldset>
+      </from>
+    </main>
+    <aside id="horarios">
+      <h2>Horarios de atención</h2>
+      <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+      <p>Sábados: 9:00 AM - 4:00 PM</p>
+      <p>Domingos y festivos: Cerrado</p>
+    </aside>
+    <footer id="Encuentranos">
+      <h3>Encuéntranos</h3>
+      <p>Estamos ubicados en El Poblado, Medellín.</p>
+      <a href="https://maps.app.goo.gl/QLGLJ18qee3nnGb26" target="_blank">Ver en el mapa </a>
+      <p>Escribenos a nuestro correo electronico: </p>
+      <a href="mailto:hola@ruedalibre.com">hola@ruedalibre.com</a>
+    </footer>
 
-<footer id="Encuentranos">
-            <h3>Encuéntranos</h3>
-            <p>Estamos ubicados en El Poblado, Medellín.</p>
-            <a href="https://maps.app.goo.gl/QLGLJ18qee3nnGb26" target="_blank">Ver en el mapa </a>
-            <p>Escribenos a nuestro correo electronico: </p>
-            <a href="mailto:hola@ruedalibre.com">hola@ruedalibre.com</a>
-        </footer>
+  </body>
 
-</body>
 </html>
