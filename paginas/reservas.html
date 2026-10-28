@@ -30,33 +30,74 @@
           <a href="mailto:info@ruedalibre.com">info@ruedalibre.com</a>
         </p>
       </section>
-      <from action="#" method="post">
+      <form action="#" method="post">
         <fieldset id="formulario">
-          <legend>Tus datos</legend>
+          <legend><strong>Tus datos</strong></legend>
           <p>
             <label for="nombre">Nombre completo:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Isabel Abreu Cambeo" required>
           </p>
           <p>
-            <label for="cc">Numero de Cedula</label>
-            <input type="text" id="cc" name="cc" pattern="[0-9]{10}" placeholder="ej:5091230 Hola como te " required>
+            <label for="tip_document">Tipo de documento:<br></label>
+            <input type="radio" id="doc_cc" name="tip_document" value="cc" required>
+            <label for="doc_cc">Cédula de ciudadanía</label><br>
+            <input type="radio" id="doc_ce" name="tip_document" value="ce" required>
+            <label for="doc_ce">Cédula de extranjería</label><br>
+            <input type="radio" id="doc_ps" name="tip_document" value="ps" required>
+            <label for="doc_ps">Pasaporte</label>
           </p>
           <p>
-            <label for="correo">correo electrónico:</label>
-            <input type="email" id="correo" name="correo" required>
+            <label for="n_document">Numero de documento</label>
+            <input type="text" id="n_document" name="n_document" pattern="[0-9]{10}" placeholder="Ej: 1234567890"
+              required>
           </p>
           <p>
-            <label for="tel">Numeor de telefono:</label>
-            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" required>
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" placeholder="Ej: hola@ruedalibre.com" required>
+          </p>
+          <p>
+            <label for="telefono">Numero de telefono:</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" placeholder="Ej: 3001234567" required>
+          </p>
+          <p>
+            <label for="comentarios">¿Como nos conociste?</label><br>
+            <textarea id="comentarios" name="comentarios" rows="4" cols="50"
+              placeholder="Cuentanos brevemente como nos conociste"></textarea>
           </p>
         </fieldset>
+
+
+
         <fieldset id="alquiler">
-          <legend>Tu alquiler</legend>
+          <legend><strong>Tu alquiler</strong></legend>
           <p>
-            <label for=""
+            <label for="list-bicicletas">Tipo de bicicleta:</label>
+            <select id="list-bicicletas" name="list-bicicletas" required>
+              <option value="">Seleccione una opción</option>
+              <option value="bicicleta-montaña">Bicicleta Urbana</option>
+              <option value="bicicleta-ruta">Bicicleta de Montaña</option>
+              <option value="bicicleta-hibrida">Bicicleta Electrica</option>
+            </select>
+          </p>
+          <p>
+            <label for="fecha">Fecha de alquiler:</label>
+            <input type="date" id="fecha" name="fecha" required>
+          </p>
+          <p>
+            <label for="hora">Hora de alquiler:</label>
+            <input type="time" id="hora" name="hora" required>
+          </p>
+          <p>
+            <label for="terminos">
+              <input type="checkbox" id="terminos" name="terminos" required>
+              Acepto los términos y condiciones
+            </label>
           </p>
         </fieldset>
-      </from>
+        <button type="submit">Enviar</button>
+      </form>
+
+
     </main>
     <aside id="horarios">
       <h2>Horarios de atención</h2>
