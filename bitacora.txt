@@ -1,16 +1,271 @@
+BITÁCORA DE DESARROLLO - RUEDA LIBRE
+
+DÍA 1
+
+MiniReto 1 - Petición del documento (Network)
+
 URL: http://127.0.0.1:5500/practicas/rueda-libre/index.html
 Protocolo: http
 Host: 127.0.0.1
-Port:5500
-Rute: ~/practicas/rueda-libre/index.html
-Request method: GET
-Status code: 304 Not Modified
+Puerto: 5500
+Ruta: /practicas/rueda-libre/index.html
+Método: GET
+Código de estado: 304 Not Modified la primera vez que miré, porque el navegador ya tenía la página en caché. Con recarga forzada (Ctrl + Shift + R) salió 200 OK.
+Ruta que no existe:
+URL: http://127.0.0.1:5500/practicas/rueda-libre/promociones.html
+Respuesta: Cannot GET /practicas/rueda-libre/promociones.html
+Código: 404 Not Found -> el servidor funciona, pero ese archivo no existe.
 
-URL: http://127.0.0.1:5500/practicas/rueda-libre//promociones.html
-Cannot GET /practicas/rueda-libre//promociones.html
-Status code: 404 Not Found (Pagina no encontrada)
+Roles en Rueda Libre:
+- HTML: la estructura y el contenido. Ej: la tabla de tarifas o el formulario de reserva.
+- CSS: cómo se ve. Ej: los colores de la marca y las tarjetas de los servicios.
+- JavaScript: el comportamiento. Ej: más adelante, calcular el precio de la reserva según la bici y el plan que se elija.
 
-Roles
-html: Estructura y contenido: define qué hay en la página (títulos, textos, imágenes, formularios).
-CSS: Presentación: define cómo se ve (colores, tipografías, tamaños y distribución).
-JavaScript: Comportamiento: define qué hace la página cuando el usuario interactúa con ella.
+MiniReto 4 - Tabla de rutas (origen -> destino -> ruta escrita)
+
+index.html            -> index.html           -> index.html
+
+index.html            -> tarifas.html         -> paginas/tarifas.html
+
+index.html            -> reservas.html        -> paginas/reservas.html
+
+paginas/tarifas.html  -> index.html           -> ../index.html
+
+paginas/tarifas.html  -> tarifas.html         -> tarifas.html
+
+paginas/tarifas.html  -> reservas.html        -> reservas.html
+
+paginas/reservas.html -> index.html           -> ../index.html
+
+paginas/reservas.html -> tarifas.html         -> tarifas.html
+
+paginas/reservas.html -> reservas.html        -> reservas.html
+
+Extra: index.html -> recorridos -> paginas/tarifas.html#recorridos
+
+       páginas de la carpeta paginas/ -> logo -> ../img/logo.png
+
+
+DÍA 2
+
+
+MiniReto 5 - Esquema de regiones
+
+Estructura definida para las páginas:
+
+Inicio:
+
+  header (logo + nombre, nav con el menú)
+
+  main
+
+    section portada (h1)
+    section ¿Quiénes somos?
+    section Nuestros servicios -> 4 article (alquiler, eléctricas, recorridos, taller)
+    section ¿Cómo alquilar?
+    section Beneficios
+    section Encuéntranos
+
+  footer
+
+Tarifas:
+
+  header + nav
+
+  main
+
+    h1
+    section Alquiler de bicicletas (tabla)
+    section Recorridos guiados (tabla)
+    section Información importante
+    aside ¿Qué llevar?
+
+  footer
+
+
+Reservas:
+
+  header + nav
+
+  main
+
+    h1
+    section Contacto
+    section Formulario de reserva
+    aside Horario de atención
+
+  footer
+
+Estructura y semántica:
+
+- El nav está dentro del header en todas las páginas.
+- La sección "Encuéntranos" forma parte del main.
+- En la página de reservas, el aside queda contenido dentro del main.
+- No se utilizan elementos div. Únicamente se incluye un span para la insignia visual "Nuevo" en la tarjeta de eléctricas, ya que no existe un elemento HTML específico para ese concepto.
+
+MiniReto 6 - Elección de controles de formulario
+
+1. Tipo de bicicleta con radio buttons: se ofrecen tres opciones mutuamente excluyentes visibles de forma directa, compartiendo name="bicicleta".
+2. Plan y recorrido con select: permite organizar las opciones desplegables manteniendo el formulario compacto.
+3. Cantidad con input number: facilita el ajuste rápido mediante flechas y restringe la entrada de texto no numérico.
+4. Políticas con checkbox para confirmación binaria y comentarios con textarea para texto multilínea libre.
+
+MiniReto 7 - Pruebas de validación
+
+Campo        | Dato de prueba     | Esperado                  | Obtenido
+
+-------------|--------------------|---------------------------|------------------------------
+
+Nombre       | (vacío)            | No envía                  | No envía, pide llenar el campo
+Nombre       | Al                 | No envía (mín. 3)         | No envía, avisa que faltan caracteres
+Documento    | 12ab56             | No envía (solo números)   | No envía, muestra el title
+Documento    | 12345              | No envía (mín. 6 dígitos) | No envía
+Documento    | 1023456789         | Acepta                    | Acepta
+Correo       | hola@              | No envía                  | No envía, pide un correo válido
+Celular      | 1234567890         | No envía (no empieza en 3)| No envía, muestra el title
+Celular      | 300123             | No envía (faltan dígitos) | No envía
+Celular      | 3001234567         | Acepta                    | Acepta
+Fecha        | 15/10/2026         | No envía (fuera de rango) | No envía, debe ser 01/11 o después
+Fecha        | 05/01/2027         | No envía (fuera de rango) | No envía, debe ser 31/12 o antes
+Cantidad     | 7                  | No envía (máx. 6)         | No envía
+Cantidad     | 0                  | No envía (mín. 1)         | No envía
+Bicicleta    | Sin marcar         | No envía                  | No envía, pide elegir una opción
+Políticas    | Sin marcar         | No envía                  | No envía, pide marcar la casilla
+Comentarios  | Texto de 320 chars | Se corta en 300           | No deja escribir más de 300
+
+Navegación por teclado:
+
+Recorrido completo comprobado mediante Tab y Shift + Tab. El orden de navegación sigue la secuencia natural del documento: nombre, documento, correo, celular, fecha, tipo de bicicleta (navegación con flechas entre opciones), plan, cantidad, recorrido, comentarios, aceptación de políticas (espacio) y botón de envío (Enter). El flujo es lógico sin necesidad de atributos tabindex.
+
+Limitación conocida: el formulario usa method="post" y action="#", pero GitHub Pages solo sirve archivos estáticos y no procesa el envío. La validación funciona en el navegador; con datos válidos la reserva no se guarda en ningún lado.
+
+
+MiniReto 8 - Auditoría de accesibilidad
+
+Puntos aplicados:
+
+1. El logo del encabezado utiliza alt="" al ser un elemento decorativo situado junto al texto del nombre.
+2. Descripciones alt detalladas en imágenes descriptivas (ej. "Mapa de la ruta entre el Parque del Río y el parque Koyo", "Bicicleta urbana de color negro").
+3. Jerarquía de encabezados corregida: h1 único por página con el nombre principal, h2 para secciones y h3 para subsecciones estructuradas.
+4. Tablas de tarifas configuradas con etiquetas caption descriptivas y h2 en sus respectivas secciones.
+5. Textos de enlace explícitos e informativos (ej. "dónde encontrarnos", "Ver nuestra ubicación en Google Maps (abre en otra pestaña)").
+6. Enlaces a sitios externos con target="_blank" complementados con rel="noopener".
+7. Dirección de correo unificada en hola@ruedalibre.example a lo largo del sitio.
+8. Corrección ortográfica global para asegurar una correcta lectura por sintetizadores de voz.
+
+Atributo lang="es" configurado en el elemento html de todas las páginas.
+
+Paleta del sitio:
+
+Fondo            #0F172A
+Texto principal  #F1F5F9
+Texto secundario #A8B5C9
+Enlaces          #38BDF8
+Botones          #2563EB
+
+Contraste (relación WCAG: 4.5:1 texto normal, 3:1 texto grande)
+
+Combinación                  | Relación | Clasificación
+
+-----------------------------|----------|---------------------------
+Texto principal sobre Fondo  | 16.30:1  | Apta para texto normal
+Texto secundario sobre Fondo | 8.60:1   | Apta para texto normal
+Enlaces sobre Fondo          | 8.33:1   | Apta para texto normal
+Fondo sobre Enlaces          | 8.33:1   | Apta para texto normal
+Texto principal sobre Botones| 4.72:1   | Apta para texto normal
+Botones sobre Fondo          | 3.45:1   | Apta solo para texto grande
+Texto secundario sobre Botones| 2.49:1  | No apta
+Enlaces sobre Botones        | 2.41:1   | No apta
+
+Criterio de aplicación cromática:
+
+- Texto principal y títulos: Texto principal sobre Fondo.
+- Texto secundario (menú inactivo y horarios): Texto secundario sobre Fondo.
+- Enlaces: color de Enlaces sobre Fondo.
+- Botones: Texto principal sobre Botones; estado hover y foco en Fondo sobre Enlaces.
+- Encabezados de tabla: Texto principal sobre Botones.
+- Etiqueta "Nuevo": Fondo sobre Enlaces.
+- El color de Botones no se usa como color de texto; sobre Fondo solo aparece en fondos de botón y bordes decorativos.
+- Indicador de foco: contorno de 3 px en Texto principal, con 16.30:1 frente al Fondo. Se ve también en radios y casilla.
+
+Sitio publicado: https://zeus18416.github.io/rueda-libre/
+
+
+DÍA 3
+
+
+MiniReto 9 - Herencia
+
+Configuración en body de tipografía principal, color del texto y fondo. Aplicación de tipografía Montserrat a h1, h2 y h3 mediante selector agrupado.
+
+Verificación en DevTools > Computed:
+
+- Propiedades heredadas: color (#F1F5F9) y font-family (Open Sans) se heredan correctamente en los elementos hijo.
+- Propiedades no heredadas: padding-bottom y background-color no se heredan; los elementos mantienen sus valores por defecto (ej. background-color: transparent).
+
+
+
+MiniReto 10 - Especificidad y reglas CSS
+
+Reglas de navegación:
+
+  #menu a  { color: var(--texto-secundario); }
+  .activo  { color: var(--enlace); font-weight: 600; }
+
+
+Cálculo de especificidad (id, clase, elemento):
+
+  #menu a  -> (1, 0, 1)
+  .activo  -> (0, 1, 0)
+
+
+El selector #menu a prevalece al incluir un identificador ID. Para aplicar el estado activo manteniendo la especificidad adecuada sin recurrir a !important ni estilos en línea, se define:
+
+  #menu a.activo -> especificidad (1, 1, 1).
+
+
+Se añaden estados :hover y :focus en el menú (fondo color Enlaces con texto color Fondo y contorno Texto principal al enfocar), clase .boton para llamados a la acción principales y contorno de foco visible en los campos del formulario.
+
+
+MiniReto 11 - Medición de componentes (Computed)
+
+Ancho de contenedor principal: max-width 60rem (960 px) menos padding lateral de 16 px por lado = 928 px.
+
+Comportamiento de tarjeta con width: 100%, padding de 24 px y borde de 1 px:
+
+- Bajo content-box, cambiado solo en la tarjeta y con main todavía en border-box: 928 + 24 + 24 + 1 + 1 = 978 px (genera desbordamiento del contenedor).
+- Bajo border-box: 928 px (el padding y el borde se integran dentro del ancho total).
+
+
+
+MiniReto 12 - Posicionamiento y estructuración final
+
+- La insignia "Nuevo" utiliza position: absolute contenida dentro de la tarjeta con position: relative.
+- El botón de contacto de WhatsApp utiliza position: fixed en la esquina inferior derecha, compensado con un padding-bottom de 5rem en el body para evitar superposiciones con el pie de página.
+- Hoja de estilos styles.css estructurada por bloques: variables en :root, estilos base, encabezado/navegación, componentes, formularios y elementos posicionados.
+- Sitio publicado v1.0: https://zeus18416.github.io/rueda-libre/
+
+
+
+Resumen de desarrollo
+
+- Reto 1: Estructura del repositorio, carpeta de proyecto, index base y análisis de peticiones HTTP en la pestaña Network.
+- Reto 2: Contenido de página de inicio con jerarquía de títulos, listas, imágenes con atributos alt y enlaces.
+- Reto 3: Página de tarifas organizada con tablas y rutas relativas con ../.
+- Reto 4: Integración de navegación global, pie de página y estructura inicial de reservas.
+- Reto 5: Maquetación basada íntegramente en etiquetas semánticas HTML5.
+- Reto 6: Formulario estructurado con fieldset, legend y controles accesibles.
+- Reto 7: Validaciones nativas mediante atributos minlength, pattern, min, max y pruebas de entrada por teclado.
+- Reto 8: Auditoría de accesibilidad WCAG, verificación de contraste de color y publicación en GitHub Pages.
+- Reto 9: Sistema de diseño basado en variables CSS y fuentes de Google Fonts.
+- Reto 10: Control de especificidad CSS, pseudo-clases de interacción (:hover, :focus) y estilos de estado.
+- Reto 11: Implementación del modelo de caja box-sizing: border-box y ajuste de componentes.
+- Reto 12: Posicionamiento relativo, absoluto y fijo, depuración final del código CSS e hito v1.0.
+
+
+Puntos de mejora identificados:
+
+- Adaptación responsive para pantallas móviles mediante Flexbox y CSS Grid.
+- Disposición de tarjetas de servicio en cuadrícula para pantallas de escritorio.
+- Inclusión de material fotográfico final de las instalaciones y flota eléctrica.
+- Procesamiento en servidor para el envío del formulario de reserva con mensaje de confirmación.
