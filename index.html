@@ -1,101 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description"
-            content="Rueda libre - Empresa de alquiler de bicicletas, taller basico y organizacion de recorridos guiados por Medellin-Colombia">
-        <title>Rueda Libre | Alquiler de bicicletas en Medellín</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Rueda Libre - Alquiler de bicicletas, taller básico y recorridos guiados por Medellín, Colombia">
+    <title>Rueda Libre | Alquiler de bicicletas en Medellín</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
 
-    <body>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
+<body>
+    <header class="encabezado">
+        <a href="index.html" class="marca">
+            <img src="img/logo.png" alt="" width="60">
+            Rueda Libre
+        </a>
+        <nav aria-label="Principal">
+            <ul id="menu">
+                <li><a href="index.html" class="activo" aria-current="page">Inicio</a></li>
                 <li><a href="paginas/tarifas.html">Tarifas y rutas</a></li>
                 <li><a href="paginas/reservas.html">Reservas</a></li>
             </ul>
         </nav>
- 
-        <header>
-            <h1>Rueda Libre | Alquiler de bicicletas en Medellín</h1>
-            <img src="img/logo.png" alt="Logo de Rueda Libre" width="150">
-        </header>
+    </header>
 
-        <main>
-            <section id="quienes-somos">
-                <h2>¿Quiénes somos?</h2>
-                <p><em>Rueda Libre - Pedalea Medellín a tu ritmo. Somos un emprendimiento paisa apasionado por la movilidad
-                        sostenible y
-                        el turismo sobre dos ruedas. Desde 2021 ayudamos a locales y visitantes a descubrir la ciudad desde una
-                        perspectiva diferente, limpia y divertida. Ya sea que necesites moverte un día por la ciudad o quieras
-                        hacer
-                        un
-                        recorrido guiado por nuestros lugares icónicos, tenemos la bicicleta perfecta para ti.</em>
-                    <a href="#Encuentranos">Encuéntranos</a>
+    <main>
+        <section class="portada">
+            <h1>Rueda Libre</h1>
+            <p>Alquiler de bicicletas en Medellín. Pedalea la ciudad a tu ritmo.</p>
+            <img src="img/logo.png" alt="Logo de Rueda Libre: una bicicleta con el nombre del negocio" width="200">
+        </section>
+
+        <section id="quienes-somos">
+            <h2>¿Quiénes somos?</h2>
+            <p>Somos un emprendimiento paisa apasionado por la movilidad sostenible y el turismo sobre dos ruedas.
+                Desde 2021 ayudamos a locales y visitantes a descubrir la ciudad de una forma <em>diferente, limpia y
+                    divertida</em>. Si quieres pasar a vernos, mira <a href="#encuentranos">dónde encontrarnos</a>.</p>
+        </section>
+
+        <section id="servicios">
+            <h2>Nuestros servicios</h2>
+
+            <article class="tarjeta">
+                <h3>Alquiler de bicicletas</h3>
+                <img src="img/bicicleta-negra.jpeg" alt="Bicicleta urbana de color negro" width="200">
+                <p>Bicicletas urbanas y de montaña por horas o por días. Todas las tarifas
+                    <strong>incluyen casco y candado</strong>.
                 </p>
-            </section>
+            </article>
 
-            <section id="servicios">
-                <h2>Nuestros servicios</h2>
-                <p><a href="paginas/tarifas.html">Tarifas y rutas</a></p>
+            <article class="tarjeta">
+                <span class="etiqueta-nuevo">Nuevo</span>
+                <h3>Bicicletas eléctricas</h3>
+                <img src="img/bicicleta-blanca.jpeg" alt="Bicicleta de color blanco" width="200">
+                <p>Sube las lomas de Medellín sin llegar agotado. Ideales para recorridos largos y para
+                    <em>quienes apenas empiezan</em> a pedalear en la ciudad.
+                </p>
+            </article>
 
-                <ul>
-                    <li><strong>Alquiler de bicicletas:</strong>
-                        <p>Contamos con bicicletas urbanas, de montaña y electricas por horas, dias o semanas. Incluyen casco y
-                            candado de segurdad</p>
-                        <img src="img/bicicleta-negra.jpeg" alt="Bicicleta de color Negra" width="200">
-                        <img src="img/bicicleta-blanca.jpeg" alt="Bicicleta de color blanca" width="200">
-                    </li>
-                    <li>
-                        <strong>Recorridos guiados:</strong>
-                        <p>Rutas turisticas y culturales por los lugares mas representativos de Medellin (Parque del Rio, Comuna
-                            13,
-                            Centro historico) acompañado por guias locales</p>
-                        <img src="img/ruta-pq-rio-pq-cp-koyo.jpeg" alt="Mapa de recorrido" width="200">
-                    </li>
-                    <li>
-                        <strong>Taller basico:</strong>
-                        <p>Ajustes rapidos, inflado de llantas y reparacion de pinchazos para que nunca te queides varado en la
-                            ruta.</p>
-                        <img src="img/taller.jpeg" alt="Taller con una bicicleta y herramientas de fondo" width="200">
-                    </li>
-                </ul>
-                <p><a href="paginas/tarifas.html#recorrido">Ver recorridos detallados</a></p>
-            </section>
+            <article class="tarjeta">
+                <h3>Recorridos guiados</h3>
+                <img src="img/ruta-pq-rio-pq-cp-koyo.jpeg"
+                    alt="Mapa de la ruta entre el Parque del Río y el parque Koyo" width="200">
+                <p>Rutas turísticas y culturales por lugares representativos de Medellín, acompañados por guías
+                    locales. Salen los sábados y domingos a las 7:00 a. m.</p>
+                <p><a href="paginas/tarifas.html#recorridos">Ver precios y horarios de los recorridos</a></p>
+            </article>
 
-            <section id="alquilar">
-                <h2>¿Cómo alquilar?</h2>
-                <h3>Pasos para alquilar tu bicicleta:</h3>
-                <ol>
-                    <li>Elige tu bicicleta: Revisa nuestro catálogo y selecciona la que mejor se adapte a tu recorrido.</li>
-                    <li>Reserva en línea o visítanos: Separa tu bici desde la web o acércate a nuestro local en El Poblado.</li>
-                    <li>Presenta tu documento: Acércate con tu identificación oficial para validar la reserva.</li>
-                    <li>Disfruta la ciudad: Recoge tu bici con tu documento de identidad y ¡empieza a pedalear!</li>
-                </ol>
-            </section>
+            <article class="tarjeta">
+                <h3>Taller básico</h3>
+                <img src="img/taller.jpeg" alt="Bicicleta en un soporte de taller con herramientas al fondo"
+                    width="200">
+                <p>Ajustes rápidos, inflado de llantas y reparación de pinchazos para que nunca te quedes varado en la
+                    ruta.</p>
+            </article>
 
-            <section id="beneficios">
-                <h2>Beneficios:</h2>
-                <ul>
-                    <li><b>Flexibilidad total: </b>Alquila por horas o dias segun tus planes.</li>
-                    <li><b>Equipamiento completo: </b>Cada alquiler incluye casco, candado de alta seguridad y mapa de
-                        ciclorrutas
-                        de la ciudad.</li>
-                    <li><b>Precios accesibles: </b>Tarifas justas sin costos ocultos.</li>
-                    <li><b>Apoyo a la movilidad sostenible: </b>Contribuyes a reducir la huella de carbono en la ciudad.</li>
-                </ul>
-            </section>
-        </main>
+            <p><a href="paginas/tarifas.html">Ver todas las tarifas y rutas</a></p>
+        </section>
 
-        <footer id="Encuentranos">
-            <h3>Encuéntranos</h3>
-            <p>Estamos ubicados en El Poblado, Medellín.</p>
-            <a href="https://maps.app.goo.gl/QLGLJ18qee3nnGb26" target="_blank">Ver en el mapa </a>
-            <p>Escribenos a nuestro correo electronico: </p>
-            <a href="mailto:hola@ruedalibre.com">hola@ruedalibre.com</a>
-            <p>Rueda Libre | Correo: <a href="mailto:hola@ruedalibre.com">hola@ruedalibre.com</a> | 2026</p>
-        </footer>
-    </body>
+        <section id="alquilar">
+            <h2>¿Cómo alquilar?</h2>
+            <ol>
+                <li>Elige tu bicicleta según el recorrido que quieras hacer.</li>
+                <li>Reserva en línea o visítanos en nuestro local de El Poblado.</li>
+                <li>Presenta tu documento de identidad para validar la reserva.</li>
+                <li>Recoge tu bici y ¡empieza a pedalear!</li>
+            </ol>
+            <p><a href="paginas/reservas.html" class="boton">Reservar ahora</a></p>
+        </section>
+
+        <section id="beneficios">
+            <h2>Beneficios</h2>
+            <ul>
+                <li><strong>Flexibilidad total:</strong> alquila por horas o por días según tus planes.</li>
+                <li><strong>Equipamiento completo:</strong> casco, candado y mapa de ciclorrutas en cada alquiler.</li>
+                <li><strong>Precios claros:</strong> tarifas justas y sin costos ocultos.</li>
+            </ul>
+        </section>
+
+        <section id="encuentranos">
+            <h2>Encuéntranos</h2>
+            <p>Estamos en El Poblado, Medellín.</p>
+            <h3>Horario de atención</h3>
+            <dl>
+                <dt>Lunes a viernes</dt>
+                <dd>7:00 a. m. a 7:00 p. m.</dd>
+                <dt>Sábados, domingos y festivos</dt>
+                <dd>6:00 a. m. a 2:00 p. m.</dd>
+            </dl>
+            <p><a href="https://maps.app.goo.gl/QLGLJ18qee3nnGb26" target="_blank" rel="noopener">Ver nuestra
+                    ubicación en Google Maps (abre en otra pestaña)</a></p>
+            <p>Escríbenos a <a href="mailto:hola@ruedalibre.example">hola@ruedalibre.example</a></p>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <p>Rueda Libre · <a href="mailto:hola@ruedalibre.example">hola@ruedalibre.example</a> · 2026</p>
+    </footer>
+
+    <a href="https://wa.me/573000000000" class="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+</body>
+
 </html>
