@@ -1,0 +1,361 @@
+:root {
+  color-scheme: dark;
+
+  --fondo: #0F172A;
+  --texto: #F1F5F9;
+  --texto-secundario: #A8B5C9;
+  --enlace: #38BDF8;
+  --boton: #2563EB;
+
+  --fuente-titulos: "Montserrat", Arial, sans-serif;
+  --fuente-texto: "Open Sans", Arial, sans-serif;
+
+  --esp-xs: 0.25rem;
+  --esp-s: 0.5rem;
+  --esp-m: 1rem;
+  --esp-l: 1.5rem;
+  --esp-xl: 2.5rem;
+
+  --radio: 0.75rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* Espacio para que el botón fijo de WhatsApp no tape el pie */
+  padding-bottom: 5rem;
+  font-family: var(--fuente-texto);
+  color: var(--texto);
+  background-color: var(--fondo);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  color: var(--texto);
+  line-height: 1.2;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+main {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: var(--esp-l) var(--esp-m);
+}
+
+section {
+  margin-bottom: var(--esp-xl);
+}
+
+/* Enlaces de texto */
+a {
+  color: var(--enlace);
+}
+
+a:hover {
+  text-decoration-thickness: 0.2rem;
+}
+
+/* Foco visible en todo el sitio: contorno claro sobre fondo oscuro */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid var(--texto);
+  outline-offset: 2px;
+}
+
+
+/* ---------- 3. Encabezado y navegación ---------- */
+.encabezado {
+  padding: var(--esp-m);
+  background-color: var(--fondo);
+  border-bottom: 4px solid var(--boton);
+  text-align: center;
+}
+
+.marca {
+  display: inline-block;
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.marca img {
+  vertical-align: middle;
+  border-radius: var(--esp-s);
+}
+
+#menu {
+  margin: var(--esp-s) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#menu li {
+  display: inline-block;
+  margin: 0 var(--esp-xs);
+}
+
+#menu a {
+  display: inline-block;
+  padding: var(--esp-s) var(--esp-m);
+  color: var(--texto-secundario);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radio);
+}
+
+#menu a.activo {
+  color: var(--enlace);
+  text-decoration: underline;
+}
+
+#menu a:hover,
+#menu a:focus {
+  color: var(--fondo);
+  background-color: var(--enlace);
+}
+
+
+/* ---------- 4. Componentes ---------- */
+
+/* Portada */
+.portada {
+  min-height: 60vh;
+  padding: var(--esp-xl) var(--esp-m);
+  text-align: center;
+  border: 1px solid var(--texto-secundario);
+  border-radius: var(--radio);
+}
+
+.portada h1 {
+  font-size: 3rem;
+  margin-top: 0;
+}
+
+.portada img {
+  border-radius: var(--radio);
+}
+
+/* Tarjetas de servicios */
+.tarjeta {
+  position: relative;
+  width: 100%;
+  padding: var(--esp-l);
+  margin-bottom: var(--esp-l);
+  border: 1px solid var(--texto-secundario);
+  border-radius: var(--radio);
+}
+
+.tarjeta img {
+  display: block;
+  width: 100%;
+  border-radius: var(--radio);
+}
+
+.tarjeta h3,
+.complementario h2 {
+  margin-top: 0;
+}
+
+/* Botón de llamada a la acción */
+.boton {
+  display: inline-block;
+  padding: var(--esp-m) var(--esp-l);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--texto);
+  background-color: var(--boton);
+  border: 2px solid var(--boton);
+  border-radius: var(--radio);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boton:hover,
+.boton:focus {
+  color: var(--fondo);
+  background-color: var(--enlace);
+  border-color: var(--enlace);
+}
+
+/* Tablas */
+table {
+  width: 100%;
+  margin-bottom: var(--esp-l);
+  border-collapse: collapse;
+}
+
+caption {
+  padding: var(--esp-s);
+  font-weight: 600;
+  text-align: left;
+}
+
+th,
+td {
+  padding: var(--esp-s) var(--esp-m);
+  border: 1px solid var(--texto-secundario);
+  text-align: left;
+}
+
+thead th {
+  color: var(--texto);
+  background-color: var(--boton);
+}
+
+/* Contenido complementario */
+.complementario {
+  padding: var(--esp-l);
+  margin-bottom: var(--esp-xl);
+  border: 1px solid var(--texto-secundario);
+  border-left: 6px solid var(--enlace);
+  border-radius: var(--radio);
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd {
+  margin: 0 0 var(--esp-s);
+  color: var(--texto-secundario);
+}
+
+/* Pie de página */
+.pie {
+  padding: var(--esp-l) var(--esp-m);
+  text-align: center;
+  border-top: 4px solid var(--boton);
+}
+
+.pie a {
+  color: var(--enlace);
+}
+
+
+/* ---------- 5. Formulario ---------- */
+fieldset {
+  margin: 0 0 var(--esp-l);
+  padding: var(--esp-l);
+  border: 1px solid var(--texto-secundario);
+  border-radius: var(--radio);
+}
+
+legend {
+  padding: 0 var(--esp-s);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+}
+
+label {
+  display: block;
+  margin-bottom: var(--esp-xs);
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: var(--esp-s);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  color: var(--texto);
+  background-color: var(--fondo);
+  border: 1px solid var(--texto-secundario);
+  border-radius: var(--esp-xs);
+}
+
+/* Grupo de opciones (radios) dentro de "Tu alquiler" */
+.opciones {
+  padding: var(--esp-m);
+  border-style: dashed;
+}
+
+.opciones legend {
+  font-family: var(--fuente-texto);
+  font-weight: 600;
+}
+
+/* Radios y casilla: control y etiqueta en la misma línea */
+.opciones input,
+.casilla input {
+  display: inline-block;
+  width: auto;
+  margin-right: var(--esp-s);
+}
+
+.opciones label,
+.casilla label {
+  display: inline-block;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--texto);
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--enlace);
+}
+
+form .boton {
+  padding: var(--esp-m) var(--esp-xl);
+  font-size: 1.1rem;
+}
+
+
+/* ---------- 6. Elementos posicionados ---------- */
+
+/* Etiqueta "Nuevo": anclada a la tarjeta (que es position: relative) */
+.etiqueta-nuevo {
+  position: absolute;
+  top: -0.75rem;
+  right: var(--esp-m);
+  padding: var(--esp-xs) var(--esp-m);
+  font-weight: 600;
+  color: var(--fondo);
+  background-color: var(--enlace);
+  border-radius: var(--radio);
+}
+
+/* Acceso a WhatsApp siempre visible */
+.whatsapp {
+  position: fixed;
+  right: var(--esp-m);
+  bottom: var(--esp-m);
+  padding: var(--esp-m) var(--esp-l);
+  font-weight: 600;
+  color: var(--texto);
+  background-color: var(--boton);
+  border: 2px solid var(--texto);
+  border-radius: 2rem;
+  text-decoration: none;
+}
+
+.whatsapp:hover,
+.whatsapp:focus {
+  color: var(--fondo);
+  background-color: var(--enlace);
+}
