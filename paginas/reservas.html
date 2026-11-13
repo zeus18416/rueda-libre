@@ -32,107 +32,113 @@
     <main>
       <h1>Reserva tu bicicleta</h1>
 
-      <section id="contacto">
-        <h2>Contacto</h2>
-        <p>Si tienes dudas sobre tu reserva, escríbenos a
-          <a href="mailto:hola@ruedalibre.example">hola@ruedalibre.example</a>.</p>
-      </section>
-
-      <section id="formulario">
-        <h2>Formulario de reserva</h2>
-        <form action="#" method="post">
-          <fieldset>
-            <legend>Tus datos</legend>
-            <p>
-              <label for="nombre">Nombre completo</label>
-              <input type="text" id="nombre" name="nombre" autocomplete="name" required minlength="3">
-            </p>
-            <p>
-              <label for="documento">Número de documento</label>
-              <input type="text" id="documento" name="documento" inputmode="numeric" required pattern="[0-9]{6,10}"
-                title="Solo números, entre 6 y 10 dígitos. Ejemplo: 1023456789">
-            </p>
-            <p>
-              <label for="correo">Correo electrónico</label>
-              <input type="email" id="correo" name="correo" autocomplete="email" required>
-            </p>
-            <p>
-              <label for="celular">Celular</label>
-              <input type="tel" id="celular" name="celular" autocomplete="tel" required pattern="3[0-9]{9}"
-                title="10 dígitos que empiecen por 3. Ejemplo: 3001234567">
-            </p>
-          </fieldset>
-
-          <fieldset>
-            <legend>Tu alquiler</legend>
-            <p>
-              <label for="fecha">Fecha del alquiler</label>
-              <input type="date" id="fecha" name="fecha" required min="2026-11-01" max="2026-12-31">
-            </p>
-            <fieldset class="opciones">
-              <legend>Tipo de bicicleta</legend>
+      <div class="reservas-layout">
+        <section id="formulario">
+          <h2>Formulario de reserva</h2>
+          <form action="#" method="post">
+            <fieldset>
+              <legend>Tus datos</legend>
               <p>
-                <input type="radio" id="bici-urbana" name="bicicleta" value="urbana" required>
-                <label for="bici-urbana">Urbana</label>
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" autocomplete="name" required minlength="3">
               </p>
               <p>
-                <input type="radio" id="bici-montana" name="bicicleta" value="montana">
-                <label for="bici-montana">Montaña</label>
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" autocomplete="email" required>
+              </p>
+              <div class="fila-campos">
+                <p>
+                  <label for="documento">Número de documento</label>
+                  <input type="text" id="documento" name="documento" inputmode="numeric" required pattern="[0-9]{6,10}"
+                    title="Solo números, entre 6 y 10 dígitos. Ejemplo: 1023456789">
+                </p>
+                <p>
+                  <label for="celular">Celular</label>
+                  <input type="tel" id="celular" name="celular" autocomplete="tel" required pattern="3[0-9]{9}"
+                    title="10 dígitos que empiecen por 3. Ejemplo: 3001234567">
+                </p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Tu alquiler</legend>
+              <p>
+                <label for="fecha">Fecha del alquiler</label>
+                <input type="date" id="fecha" name="fecha" required min="2026-11-01" max="2026-12-31">
+              </p>
+              <fieldset class="opciones">
+                <legend>Tipo de bicicleta</legend>
+                <p>
+                  <input type="radio" id="bici-urbana" name="bicicleta" value="urbana" required>
+                  <label for="bici-urbana">Urbana</label>
+                </p>
+                <p>
+                  <input type="radio" id="bici-montana" name="bicicleta" value="montana">
+                  <label for="bici-montana">Montaña</label>
+                </p>
+                <p>
+                  <input type="radio" id="bici-electrica" name="bicicleta" value="electrica">
+                  <label for="bici-electrica">Eléctrica</label>
+                </p>
+              </fieldset>
+              <p>
+                <label for="plan">Plan</label>
+                <select id="plan" name="plan" required>
+                  <option value="">Elige un plan</option>
+                  <option value="1-hora">1 hora</option>
+                  <option value="medio-dia">Medio día (4 h)</option>
+                  <option value="dia-completo">Día completo</option>
+                </select>
               </p>
               <p>
-                <input type="radio" id="bici-electrica" name="bicicleta" value="electrica">
-                <label for="bici-electrica">Eléctrica</label>
+                <label for="cantidad">Cantidad de bicicletas</label>
+                <input type="number" id="cantidad" name="cantidad" required min="1" max="6" value="1">
+              </p>
+              <p>
+                <label for="recorrido">Recorrido guiado</label>
+                <select id="recorrido" name="recorrido">
+                  <option value="ninguno">Ninguno</option>
+                  <option value="rio-parques">Río y Parques</option>
+                  <option value="sabores-barrio">Sabores de Barrio</option>
+                  <option value="reto-las-palmas">Reto Las Palmas</option>
+                </select>
               </p>
             </fieldset>
-            <p>
-              <label for="plan">Plan</label>
-              <select id="plan" name="plan" required>
-                <option value="">Elige un plan</option>
-                <option value="1-hora">1 hora</option>
-                <option value="medio-dia">Medio día (4 h)</option>
-                <option value="dia-completo">Día completo</option>
-              </select>
-            </p>
-            <p>
-              <label for="cantidad">Cantidad de bicicletas</label>
-              <input type="number" id="cantidad" name="cantidad" required min="1" max="6" value="1">
-            </p>
-            <p>
-              <label for="recorrido">Recorrido guiado</label>
-              <select id="recorrido" name="recorrido">
-                <option value="ninguno">Ninguno</option>
-                <option value="rio-parques">Río y Parques</option>
-                <option value="sabores-barrio">Sabores de Barrio</option>
-                <option value="reto-las-palmas">Reto Las Palmas</option>
-              </select>
-            </p>
-          </fieldset>
 
-          <fieldset>
-            <legend>Confirmación</legend>
-            <p>
-              <label for="comentarios">Comentarios (opcional, máximo 300 caracteres)</label>
-              <textarea id="comentarios" name="comentarios" rows="4" maxlength="300"></textarea>
-            </p>
-            <p class="casilla">
-              <input type="checkbox" id="politicas" name="politicas" value="acepto" required>
-              <label for="politicas">Acepto las políticas de alquiler</label>
-            </p>
-          </fieldset>
+            <fieldset>
+              <legend>Confirmación</legend>
+              <p>
+                <label for="comentarios">Comentarios (opcional, máximo 300 caracteres)</label>
+                <textarea id="comentarios" name="comentarios" rows="4" maxlength="300"></textarea>
+              </p>
+              <p class="casilla">
+                <input type="checkbox" id="politicas" name="politicas" value="acepto" required>
+                <label for="politicas">Acepto las políticas de alquiler</label>
+              </p>
+            </fieldset>
 
-          <button type="submit" class="boton">Enviar reserva</button>
-        </form>
-      </section>
+            <button type="submit" class="boton">Enviar reserva</button>
+          </form>
+        </section>
 
-      <aside class="complementario" id="horario">
-        <h2>Horario de atención</h2>
-        <dl>
-          <dt>Lunes a viernes</dt>
-          <dd>7:00 a. m. a 7:00 p. m.</dd>
-          <dt>Sábados, domingos y festivos</dt>
-          <dd>6:00 a. m. a 2:00 p. m.</dd>
-        </dl>
-      </aside>
+        <aside class="complementario reservas-info" aria-label="Información de contacto">
+          <section id="contacto">
+            <h2>Contacto</h2>
+            <p>Si tienes dudas sobre tu reserva, escríbenos a
+              <a href="mailto:hola@ruedalibre.example">hola@ruedalibre.example</a>.</p>
+            <p>Estamos en El Poblado, Medellín.</p>
+          </section>
+          <section id="horario">
+            <h2>Horario de atención</h2>
+            <dl>
+              <dt>Lunes a viernes</dt>
+              <dd>7:00 a. m. a 7:00 p. m.</dd>
+              <dt>Sábados, domingos y festivos</dt>
+              <dd>6:00 a. m. a 2:00 p. m.</dd>
+            </dl>
+          </section>
+        </aside>
+      </div>
     </main>
 
     <footer class="pie">
