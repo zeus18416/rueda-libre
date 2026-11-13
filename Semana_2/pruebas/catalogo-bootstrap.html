@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Catálogo con Bootstrap (pruebas) | Rueda Libre</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="border-bottom border-4 border-primary py-3 mb-4">
+        <div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+            <h1 class="fs-4 fw-bold mb-0">Rueda Libre · catálogo de pruebas</h1>
+            <a href="../index.html">Volver al inicio</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- MiniReto 5: la distribución sale solo de la grilla (row, col-*, g-*) -->
+        <section id="flota" class="mb-5">
+            <h2 class="mb-4">Nuestra flota</h2>
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <article class="h-100 d-flex flex-column justify-content-between gap-3 p-4 border rounded-3">
+                        <div>
+                            <div class="ratio ratio-4x3">
+                                <img src="../img/flota/urbana-clasica.jpeg" alt="Bicicleta Urbana Clásica gris con sillín y puños café" width="320" height="266" class="object-fit-contain bg-white rounded-3">
+                            </div>
+                            <h3 class="h5 mt-3">Urbana Clásica</h3>
+                            <p>Cómoda y liviana para las ciclorrutas.</p>
+                            <p class="fw-semibold mb-0">$10.000 por hora</p>
+                        </div>
+                        <a href="../paginas/reservas.html" class="text-bg-primary fw-semibold text-center text-decoration-none py-2 px-3 rounded-3" aria-label="Reservar Urbana Clásica">Reservar</a>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <article class="h-100 d-flex flex-column justify-content-between gap-3 p-4 border rounded-3">
+                        <div>
+                            <div class="ratio ratio-4x3">
+                                <img src="../img/flota/urbana-plegable.jpg" alt="Bicicleta Urbana Plegable color beige con guardabarros negros" width="3000" height="3000" class="object-fit-contain bg-white rounded-3">
+                            </div>
+                            <h3 class="h5 mt-3">Urbana Plegable</h3>
+                            <p>Se dobla en segundos; ideal para combinar con el metro.</p>
+                            <p class="fw-semibold mb-0">$12.000 por hora</p>
+                        </div>
+                        <a href="../paginas/reservas.html" class="text-bg-primary fw-semibold text-center text-decoration-none py-2 px-3 rounded-3" aria-label="Reservar Urbana Plegable">Reservar</a>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <article class="h-100 d-flex flex-column justify-content-between gap-3 p-4 border rounded-3">
+                        <div>
+                            <div class="ratio ratio-4x3">
+                                <img src="../img/flota/montana-trail.jpg" alt="Bicicleta de montaña Montaña Trail azul con suspensión y llantas de tacos" width="511" height="287" class="object-fit-contain bg-white rounded-3">
+                            </div>
+                            <h3 class="h5 mt-3">Montaña Trail</h3>
+                            <p>Suspensión delantera y 21 cambios para las subidas.</p>
+                            <p class="fw-semibold mb-0">$15.000 por hora</p>
+                        </div>
+                        <a href="../paginas/reservas.html" class="text-bg-primary fw-semibold text-center text-decoration-none py-2 px-3 rounded-3" aria-label="Reservar Montaña Trail">Reservar</a>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <article class="h-100 d-flex flex-column justify-content-between gap-3 p-4 border rounded-3">
+                        <div>
+                            <div class="ratio ratio-4x3">
+                                <img src="../img/flota/gravel-aventura.jpg" alt="Bicicleta Gravel Aventura gris claro con manubrio de ruta y llantas anchas" width="510" height="510" class="object-fit-contain bg-white rounded-3">
+                            </div>
+                            <h3 class="h5 mt-3">Gravel Aventura</h3>
+                            <p>Para rutas mixtas de asfalto y destapado.</p>
+                            <p class="fw-semibold mb-0">$18.000 por hora</p>
+                        </div>
+                        <a href="../paginas/reservas.html" class="text-bg-primary fw-semibold text-center text-decoration-none py-2 px-3 rounded-3" aria-label="Reservar Gravel Aventura">Reservar</a>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <article class="h-100 d-flex flex-column justify-content-between gap-3 p-4 border rounded-3">
+                        <div>
+                            <div class="ratio ratio-4x3">
+                                <img src="../img/flota/electrica-urbana.jpg" alt="Bicicleta Eléctrica Urbana gris con batería en el cuadro y parrilla trasera" width="1500" height="943" class="object-fit-contain bg-white rounded-3">
+                            </div>
+                            <h3 class="h5 mt-3">Eléctrica Urbana</h3>
+                            <p>Asistencia eléctrica con 45 km de autonomía.</p>
+                            <p class="fw-semibold mb-0">$25.000 por hora</p>
+                        </div>
+                        <a href="../paginas/reservas.html" class="text-bg-primary fw-semibold text-center text-decoration-none py-2 px-3 rounded-3" aria-label="Reservar Eléctrica Urbana">Reservar</a>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <article class="h-100 d-flex flex-column justify-content-between gap-3 p-4 border rounded-3">
+                        <div>
+                            <div class="ratio ratio-4x3">
+                                <img src="../img/flota/infantil.jpg" alt="Bicicleta Infantil negra y naranja con rueditas de apoyo y canasta" width="1200" height="1200" class="object-fit-contain bg-white rounded-3">
+                            </div>
+                            <h3 class="h5 mt-3">Infantil</h3>
+                            <p>Para niños de 6 a 10 años.</p>
+                            <p class="fw-semibold mb-0">$8.000 por hora</p>
+                        </div>
+                        <a href="../paginas/reservas.html" class="text-bg-primary fw-semibold text-center text-decoration-none py-2 px-3 rounded-3" aria-label="Reservar Infantil">Reservar</a>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <article class="h-100 d-flex flex-column justify-content-between gap-3 p-4 border rounded-3">
+                        <div>
+                            <div class="ratio ratio-4x3">
+                                <img src="../img/flota/tandem.jpg" alt="Bicicleta Tándem azul con dos sillines y dos juegos de pedales" width="500" height="500" class="object-fit-contain bg-white rounded-3">
+                            </div>
+                            <h3 class="h5 mt-3">Tándem</h3>
+                            <p>Para dos personas; perfecta para pasear en pareja.</p>
+                            <p class="fw-semibold mb-0">$20.000 por hora</p>
+                        </div>
+                        <a href="../paginas/reservas.html" class="text-bg-primary fw-semibold text-center text-decoration-none py-2 px-3 rounded-3" aria-label="Reservar Tándem">Reservar</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- MiniReto 6: sección construida solo con utilidades, sin una línea de CSS -->
+        <section id="beneficios" class="py-4 mb-5">
+            <h2 class="text-center fw-bold mb-2">¿Por qué Rueda Libre?</h2>
+            <p class="lead text-center text-body-secondary mb-4 mb-md-5">Todo lo que necesitas para rodar tranquilo por Medellín.</p>
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <article class="h-100 p-4 bg-body-tertiary border-top border-4 border-primary rounded-3">
+                        <p class="display-6 fw-bold text-body-emphasis mb-2">100 %</p>
+                        <h3 class="fs-5 fw-semibold">Bicicletas revisadas en cada alquiler</h3>
+                        <p class="text-body-secondary mb-0">Frenos, cambios y llantas se revisan antes de cada salida.</p>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <article class="h-100 p-4 bg-body-tertiary border-top border-4 border-primary rounded-3">
+                        <p class="display-6 fw-bold text-body-emphasis mb-2">$0</p>
+                        <h3 class="fs-5 fw-semibold">Casco y candado incluidos</h3>
+                        <p class="text-body-secondary mb-0">Vienen con todas las tarifas, sin costo adicional.</p>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <article class="h-100 p-4 bg-body-tertiary border-top border-4 border-primary rounded-3">
+                        <p class="display-6 fw-bold text-body-emphasis mb-2">3 rutas</p>
+                        <h3 class="fs-5 fw-semibold">Guías certificados</h3>
+                        <p class="text-body-secondary mb-0">Te acompañan en Río y Parques, Sabores de Barrio y Reto Las Palmas.</p>
+                    </article>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <article class="h-100 p-4 bg-body-tertiary border-top border-4 border-primary rounded-3">
+                        <p class="display-6 fw-bold text-body-emphasis mb-2">3 sedes</p>
+                        <h3 class="fs-5 fw-semibold">Puntos de devolución en tres sedes</h3>
+                        <p class="text-body-secondary mb-0">Entrega la bici en la sede que te quede más cerca.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="titulo-franja" class="mb-5 p-4 p-md-5 bg-body-tertiary border border-2 border-primary rounded-3">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 gap-md-4 text-center text-md-start">
+                <img src="../img/bicicleta-blanca.jpeg" alt="" width="120" height="120" class="d-none d-md-block flex-shrink-0 rounded-circle object-fit-cover bg-white">
+                <div class="flex-grow-1">
+                    <h2 id="titulo-franja" class="fs-3 fw-bold mb-1">¿Listo para rodar?</h2>
+                    <p class="text-body-secondary mb-0">Reserva en línea y recoge tu bici en minutos.</p>
+                </div>
+                <a href="../paginas/reservas.html" class="flex-shrink-0 text-bg-primary fs-5 fw-semibold px-4 py-3 rounded-3 text-decoration-none">Reservar ahora</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-top border-4 border-primary py-4">
+        <p class="container text-body-secondary mb-0">Rueda Libre · página de pruebas, no forma parte del sitio publicado.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
