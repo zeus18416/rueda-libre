@@ -288,3 +288,123 @@ Ancho   | Encabezado                                              | Pie
 - El menú y el pie no se desbordan: con flex-wrap, lo que no cabe baja de línea.
 - El espacio entre enlaces lo da gap en #menu. Se quitaron el inline-block y los márgenes de los li.
 - Problema pendiente para el MiniReto 4: a 420 y 300 px las tablas de tarifas sí se salen de la pantalla.
+
+
+MiniReto 2 - La flota en cuadrícula con Grid
+
+Regla de la cuadrícula: grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1.5rem;
+
+Columnas observadas (valores calculados por el navegador, medidos en Firefox):
+
+Ancho   | Columnas | Ancho de cada columna | Filas con 7 modelos
+--------|----------|-----------------------|--------------------
+1280 px | 3        | 293 px                | 3 (3 + 3 + 1)
+900 px  | 2        | 422 px                | 4 (2 + 2 + 2 + 1)
+500 px  | 1        | 468 px                | 7
+
+Prueba del séptimo modelo:
+
+- Con 6 modelos a 1280 px: 3 columnas y 2 filas completas.
+- Al agregar el Tándem, solo en el HTML, se creó una tercera fila con la tarjeta en la primera columna.
+- La suma de comprobación de styles.css fue la misma antes y después, y la hoja no tiene ninguna media query.
+
+Altura de las tarjetas y enlace "Reservar":
+
+- Las tarjetas de una misma fila miden lo mismo y sus botones terminan a la misma altura. Ejemplo a 900 px: la tercera fila mide 531 px en ambas tarjetas y las demás filas miden 557 px.
+- Se logra con Grid, que estira las tarjetas de cada fila, y con flex-direction: column y justify-content: space-between dentro de cada tarjeta.
+- Las tarjetas reutilizan la clase .tarjeta de la semana 1, así que conservan relleno, borde y esquinas.
+
+Notas:
+
+- Las imágenes de img/flota/ ya son fotos reales de cada modelo (reemplazaron los marcadores SVG provisionales). Como cada foto tiene otra proporción, se muestran todas en 4:3 con aspect-ratio y object-fit: contain, sin recortar la bicicleta.
+- Ahora se usan div sin significado propio: uno para la cuadrícula y otro dentro de cada tarjeta para agrupar la imagen y el texto. Esto cambia lo anotado en el MiniReto 5, donde no se usaban div.
+- A 1280 px, la última fila con el Tándem conserva el ancho de columna y deja vacío el resto de la fila.
+
+MiniReto 3 - Layout de escritorio: Grid y Flexbox
+
+Criterio: si los elementos se ordenan en una sola dirección (una fila o una columna), uso Flexbox. Si el diseño
+define columnas que deben mantener su proporción y alinearse como una cuadrícula, uso Grid.
+
+Caso              | Herramienta | Por qué
+------------------|-------------|-------------------------------------------------------------------------------
+Portada           | Grid        | El boceto define dos columnas iguales (1fr 1fr): texto a la izquierda y foto a la derecha. align-items: center centra el texto verticalmente frente a la foto.
+Galería de rutas  | Grid        | Tres tarjetas del mismo ancho con repeat(3, 1fr) y gap. Grid fija las columnas y estira las tarjetas de la fila a la misma altura.
+Reservas          | Grid        | La proporción 2:1 entre formulario e información se expresa directamente con grid-template-columns: 2fr 1fr.
+Fila del formulario | Flexbox   | Son solo dos campos en una fila, sin columnas que alinear con otras filas: es un caso de una dimensión. Cada campo usa flex: 1 para repartir el ancho.
+Encabezado        | Flexbox     | Marca y menú van en una sola fila, en extremos opuestos (justify-content: space-between) y centrados entre sí (align-items: center).
+Pie               | Flexbox     | Tres bloques en una fila que bajan de línea con flex-wrap cuando no caben. No necesitan alinearse con otra fila.
+
+Cambios en el HTML:
+
+- Inicio: el texto de la portada se agrupó en div.portada-texto para que sea una sola columna. La foto es bicicleta-negra.jpeg (antes era el logo).
+- Inicio: nueva sección "Nuestras rutas" con foto, nombre y nivel. Río y Parques usa el mapa real de la ruta; Sabores de Barrio y Reto Las Palmas usan marcadores SVG provisionales en img/rutas/.
+- Reservas: div.reservas-layout envuelve el formulario y un aside con el contacto y el horario. El contacto pasó de arriba del formulario a la columna derecha.
+- Reservas: el correo quedó antes del documento para que documento y celular estén juntos dentro de div.fila-campos. Los atributos de validación no cambiaron.
+- Todas las columnas usan fr; no hay porcentajes ni anchos fijos en px.
+
+
+MiniReto 4 - Rueda Libre v1.5: mobile-first
+
+Organización de styles.css:
+
+- Los estilos base (sin media query) describen el celular: todo en una sola columna.
+- Al final de la hoja hay solo dos media queries con min-width:
+  - 768 px (tablet): encabezado y pie en fila (distribución del MiniReto 1), portada en dos columnas,
+    galería de rutas en tres columnas, documento y celular en la misma fila, tablas con relleno normal.
+  - 1200 px (escritorio): reservas en proporción 2:1 y título de la portada más grande.
+- La flota no necesita media query: sigue con repeat(auto-fit, minmax(...)).
+- Imágenes fluidas: img { max-width: 100%; height: auto; } en la base; las de portada y tarjetas usan width: 100%.
+
+Comportamiento por ancho (medido con Firefox):
+
+Ancho    | Encabezado                          | Portada        | Rutas      | Reservas                 | Pie
+---------|-------------------------------------|----------------|------------|--------------------------|----------------
+360 px   | Nombre arriba, menú debajo centrado | 1 columna      | 1 columna  | 1 columna, campos apilados | Bloques apilados
+768 px   | Nombre y menú en extremos opuestos  | 2 columnas     | 3 columnas | 1 columna, doc. y celular en fila | Bloques en fila
+1200 px  | Igual que tablet                    | 2 columnas     | 3 columnas | Formulario 2/3 + contacto 1/3 | Bloques en fila
+
+Ancho del documento contra ancho visible (scrollWidth / clientWidth) antes y después:
+
+Página        | 360 px antes | 360 px después | 768, 1200 y 1280 px
+--------------|--------------|----------------|--------------------
+Inicio        | 444 / 348    | 348 / 348      | sin desborde
+Tarifas       | 509 / 348    | 348 / 348      | sin desborde
+Reservas      | 517 / 348    | 348 / 348      | sin desborde
+
+(clientWidth es 348 y no 360 porque la barra de desplazamiento de escritorio ocupa 12 px; en un celular la barra
+no ocupa espacio, así que hay aún más margen.)
+
+Problemas responsive encontrados y su solución:
+
+1. Galería de rutas desbordada en el celular.
+   Problema: con repeat(3, 1fr) las tres tarjetas se mantenían en fila y llegaban a 444 px en una pantalla de 360.
+   Solución: la base usa una sola columna (1fr) y las tres columnas solo aparecen desde 768 px.
+
+2. Columna de contacto de reservas demasiado angosta.
+   Problema: con 2fr 1fr a 360 px, el correo hola@ruedalibre.example no cabía y empujaba la página hasta 517 px.
+   Solución: una columna en móvil y tablet; la proporción 2:1 se aplica desde 1200 px. A 768 px la columna de
+   1/3 también quedaba muy justa para el correo, por eso el cambio va en el breakpoint de escritorio.
+
+3. Tablas de tarifas con desplazamiento lateral.
+   Problema: la tabla de recorridos (5 columnas) medía 509 px a 360. Al bajar solo la letra seguía en 388 px,
+   porque palabras como "Distancia" o "Precio por persona" no se pueden partir.
+   Solución: en móvil, font-size: 0.875rem, relleno de var(--esp-xs) y hyphens: auto, que parte las palabras
+   con guion según el idioma (lang="es"). Desde 768 px se recuperan el relleno y la letra normales.
+
+4. Menú partido en dos líneas en el celular.
+   Problema: con el nombre arriba y el menú centrado debajo, "Reservas" bajaba a una segunda línea.
+   Solución: relleno lateral de var(--esp-s) en los enlaces en móvil; desde 768 px vuelve a var(--esp-m).
+
+5. Botón de WhatsApp tapando los campos del formulario.
+   Problema: el botón fijo ocupaba casi la mitad del ancho de los campos a 360 px.
+   Solución: en móvil es más pequeño y está más pegado a la esquina; desde 768 px recupera su tamaño.
+
+6. Flota en pantallas muy angostas.
+   Problema: minmax(18rem, 1fr) obliga a que cada columna mida al menos 288 px, más que el espacio disponible
+   en pantallas de 320 px o menos.
+   Solución: minmax(min(18rem, 100%), 1fr): el mínimo nunca supera el ancho del contenedor.
+
+Pendientes:
+
+- A 320 px la tabla de recorridos todavía se pasa unos 37 px. El reto pide 360 px, que sí funciona.
+- Publicar la v1.5 en GitHub Pages y probarla en un celular real.
