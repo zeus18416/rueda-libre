@@ -1,3 +1,10 @@
+/* Rueda Libre v2.0-beta
+   La distribución (columnas, filas, espacios entre bloques) la resuelven la grilla
+   y las utilidades de Bootstrap 5.3. Esta hoja se carga DESPUÉS de Bootstrap y solo
+   guarda la identidad visual: variables, tipografía, colores, tarjetas, tablas,
+   formulario y estados. */
+
+/* ---------- 1. Variables ---------- */
 :root {
   color-scheme: dark;
 
@@ -17,22 +24,29 @@
   --esp-xl: 2.5rem;
 
   --radio: 0.75rem;
+
+  /* Variables de Bootstrap con los valores de la marca: así el body y las
+     utilidades (text-body-secondary, border, border-primary, rounded-3...)
+     usan nuestra paleta y no la de Bootstrap. :root se carga después que
+     [data-bs-theme=dark] y tiene la misma especificidad, por eso gana. */
+  --bs-body-bg: var(--fondo);
+  --bs-body-color: var(--texto);
+  --bs-body-font-family: var(--fuente-texto);
+  --bs-body-line-height: 1.6;
+  --bs-emphasis-color: var(--texto);
+  --bs-secondary-color: var(--texto-secundario);
+  --bs-border-color: var(--texto-secundario);
+  --bs-border-radius-lg: var(--radio);
+  --bs-primary-rgb: 37, 99, 235;
+  --bs-link-color-rgb: 56, 189, 248;
+  --bs-link-hover-color-rgb: 56, 189, 248;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
+/* ---------- 2. Base ---------- */
 body {
-  margin: 0;
   /* Espacio para que el botón fijo de WhatsApp no tape el pie */
   padding-bottom: 5rem;
-  font-family: var(--fuente-texto);
-  color: var(--texto);
-  background-color: var(--fondo);
-  line-height: 1.6;
 }
 
 h1,
@@ -40,8 +54,6 @@ h2,
 h3 {
   font-family: var(--fuente-titulos);
   font-weight: 700;
-  color: var(--texto);
-  line-height: 1.2;
 }
 
 img {
@@ -49,17 +61,6 @@ img {
   height: auto;
 }
 
-main {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: var(--esp-l) var(--esp-m);
-}
-
-section {
-  margin-bottom: var(--esp-xl);
-}
-
-/* Enlaces de texto */
 a {
   color: var(--enlace);
 }
@@ -80,21 +81,12 @@ textarea:focus {
 
 
 /* ---------- 3. Encabezado y navegación ---------- */
-/* Móvil: nombre arriba y menú debajo, ambos centrados */
 .encabezado {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--esp-s);
-  padding: var(--esp-m);
   background-color: var(--fondo);
   border-bottom: 4px solid var(--boton);
 }
 
 .marca {
-  display: flex;
-  align-items: center;
-  gap: var(--esp-s);
   font-family: var(--fuente-titulos);
   font-size: 1.5rem;
   color: var(--texto);
@@ -105,20 +97,7 @@ textarea:focus {
   border-radius: var(--esp-s);
 }
 
-#menu {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--esp-s);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
 #menu a {
-  display: block;
-  /* Móvil: relleno lateral corto para que los tres enlaces quepan en una fila */
-  padding: var(--esp-s);
   color: var(--texto-secundario);
   font-weight: 600;
   text-decoration: none;
@@ -138,56 +117,15 @@ textarea:focus {
 
 
 /* ---------- 4. Componentes ---------- */
-
-/* Portada. Móvil: una columna, texto arriba y foto debajo */
 .portada {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  gap: var(--esp-l);
-  padding: var(--esp-l);
   border: 1px solid var(--texto-secundario);
   border-radius: var(--radio);
 }
 
-.portada h1 {
-  font-size: 2.25rem;
-  margin-top: 0;
-}
-
-.portada img {
-  display: block;
-  width: 100%;
-  border-radius: var(--radio);
-}
-
-/* Galería de rutas. Móvil: una tarjeta debajo de otra */
-.rutas-galeria {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--esp-l);
-}
-
-.rutas-galeria .tarjeta {
-  margin-bottom: 0;
-}
-
-.rutas-galeria .tarjeta h3 {
-  margin-top: var(--esp-m);
-}
-
-.nivel {
-  margin-bottom: 0;
-  font-weight: 600;
-  color: var(--texto-secundario);
-}
-
-/* Tarjetas de servicios */
+/* Tarjetas */
 .tarjeta {
   position: relative;
-  width: 100%;
   padding: var(--esp-l);
-  margin-bottom: var(--esp-l);
   border: 1px solid var(--texto-secundario);
   border-radius: var(--radio);
 }
@@ -196,50 +134,6 @@ textarea:focus {
   display: block;
   width: 100%;
   border-radius: var(--radio);
-}
-
-.tarjeta h3,
-.complementario h2 {
-  margin-top: 0;
-}
-
-/* Flota: las columnas dependen del espacio disponible, sin media queries.
-   min() evita que el mínimo de 18rem sea más ancho que pantallas muy angostas. */
-.flota-cuadricula {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
-  gap: var(--esp-l);
-}
-
-/* Tarjeta en columna: "Reservar" queda siempre al final */
-.flota-cuadricula .tarjeta {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--esp-m);
-  margin-bottom: 0;
-}
-
-.flota-cuadricula .tarjeta h3 {
-  margin-top: var(--esp-m);
-}
-
-/* Fotos de la flota: cada archivo tiene otra proporción. Todas se muestran en 4:3
-   y contain las encoge sin recortar la bicicleta; el fondo blanco rellena los bordes. */
-.flota-cuadricula .tarjeta img {
-  aspect-ratio: 4 / 3;
-  height: auto;
-  object-fit: contain;
-  background-color: #fff;
-}
-
-.flota-cuadricula .boton {
-  text-align: center;
-}
-
-.precio {
-  margin-bottom: 0;
-  font-weight: 600;
 }
 
 /* Botón de llamada a la acción */
@@ -264,39 +158,8 @@ textarea:focus {
   border-color: var(--enlace);
 }
 
-/* Tablas. Móvil: menos relleno y letra más pequeña para que quepan sin
-   desplazamiento lateral */
-table {
-  width: 100%;
-  margin-bottom: var(--esp-l);
-  border-collapse: collapse;
-  font-size: 0.875rem;
-  /* Permite partir palabras largas con guion (usa el idioma de lang="es") */
-  hyphens: auto;
-}
-
-caption {
-  padding: var(--esp-s) 0;
-  font-weight: 600;
-  text-align: left;
-}
-
-th,
-td {
-  padding: var(--esp-xs);
-  border: 1px solid var(--texto-secundario);
-  text-align: left;
-}
-
-thead th {
-  color: var(--texto);
-  background-color: var(--boton);
-}
-
-/* Contenido complementario */
+/* Contenido complementario (el relleno va con utilidades p-*) */
 .complementario {
-  padding: var(--esp-l);
-  margin-bottom: var(--esp-xl);
   border: 1px solid var(--texto-secundario);
   border-left: 6px solid var(--enlace);
   border-radius: var(--radio);
@@ -311,12 +174,8 @@ dd {
   color: var(--texto-secundario);
 }
 
-/* Pie de página. Móvil: bloques uno debajo del otro */
+/* Pie de página */
 .pie {
-  display: flex;
-  flex-direction: column;
-  gap: var(--esp-l);
-  padding: var(--esp-l) var(--esp-m);
   border-top: 4px solid var(--boton);
 }
 
@@ -330,38 +189,53 @@ dd {
   margin: 0 0 var(--esp-xs);
 }
 
-.pie a {
-  color: var(--enlace);
+
+/* ---------- 5. Tablas (semana 1) ----------
+   Móvil: menos relleno y letra más pequeña para que quepan sin
+   desplazamiento lateral */
+table {
+  width: 100%;
+  margin-bottom: var(--esp-l);
+  /* Bootstrap (Reboot) pone caption-side: bottom; el título va arriba */
+  caption-side: top;
+  font-size: 0.875rem;
+  /* Permite partir palabras largas con guion (usa el idioma de lang="es") */
+  hyphens: auto;
+}
+
+caption {
+  padding: var(--esp-s) 0;
+  font-weight: 600;
+  color: var(--texto);
+}
+
+th,
+td {
+  padding: var(--esp-xs);
+  border: 1px solid var(--texto-secundario);
+  text-align: left;
+}
+
+thead th {
+  color: var(--texto);
+  background-color: var(--boton);
+}
+
+/* Tablet en adelante: se recuperan el relleno y el tamaño de letra normales */
+@media (min-width: 768px) {
+  table {
+    font-size: 1rem;
+    hyphens: manual;
+  }
+
+  th,
+  td {
+    padding: var(--esp-s) var(--esp-m);
+  }
 }
 
 
-/* ---------- 5. Formulario ---------- */
-
-/* Reservas. Móvil y tablet: formulario arriba e información debajo */
-.reservas-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: start;
-  gap: var(--esp-xl);
-}
-
-.reservas-info h2 {
-  margin-top: 0;
-}
-
-.reservas-info section:last-child {
-  margin-bottom: 0;
-}
-
-/* Documento y celular. Móvil: uno debajo del otro (Flexbox en columna) */
-.fila-campos {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  column-gap: var(--esp-m);
-}
-
+/* ---------- 6. Formulario ---------- */
 fieldset {
   margin: 0 0 var(--esp-l);
   padding: var(--esp-l);
@@ -369,9 +243,14 @@ fieldset {
   border-radius: var(--radio);
 }
 
+/* Bootstrap (Reboot) pone float: left, width: 100% y letra grande en legend,
+   y eso la saca del borde del fieldset. Se recupera el aspecto original. */
 legend {
+  float: none;
+  width: auto;
   padding: 0 var(--esp-s);
   font-family: var(--fuente-titulos);
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
@@ -403,6 +282,7 @@ textarea {
 
 .opciones legend {
   font-family: var(--fuente-texto);
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -437,7 +317,7 @@ form .boton {
 }
 
 
-/* ---------- 6. Elementos posicionados ---------- */
+/* ---------- 7. Elementos posicionados ---------- */
 
 /* Etiqueta "Nuevo": anclada a la tarjeta (que es position: relative) */
 .etiqueta-nuevo {
@@ -451,14 +331,9 @@ form .boton {
   border-radius: var(--radio);
 }
 
-/* Acceso a WhatsApp siempre visible */
+/* WhatsApp: la posición fija y el relleno van con utilidades
+   (position-fixed, bottom-0, end-0, m-*, p-*) */
 .whatsapp {
-  position: fixed;
-  right: var(--esp-s);
-  bottom: var(--esp-s);
-  /* Móvil: botón más compacto para tapar menos contenido */
-  padding: var(--esp-s) var(--esp-m);
-  font-size: 0.875rem;
   font-weight: 600;
   color: var(--texto);
   background-color: var(--boton);
@@ -471,89 +346,4 @@ form .boton {
 .whatsapp:focus {
   color: var(--fondo);
   background-color: var(--enlace);
-}
-
-/* ---------- 7. Media queries (mobile-first) ----------
-   Los estilos de arriba describen el celular, en una sola columna.
-   Aquí solo se agrega lo que cambia cuando hay más espacio. */
-
-/* Tablet: desde 768 px */
-@media (min-width: 768px) {
-  /* Encabezado: se recupera la distribución del MiniReto 1 */
-  .encabezado {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: var(--esp-m);
-  }
-
-  #menu a {
-    padding: var(--esp-s) var(--esp-m);
-  }
-
-  /* Pie: tres bloques en fila que bajan de línea si no caben */
-  .pie {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  /* Portada: texto a la izquierda y foto a la derecha */
-  .portada {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--esp-xl);
-    padding: var(--esp-xl);
-  }
-
-  .portada h1 {
-    font-size: 3rem;
-  }
-
-  /* Galería: las tres rutas en una fila */
-  .rutas-galeria {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Documento y celular en la misma fila */
-  .fila-campos {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .fila-campos p {
-    flex: 1;
-  }
-
-  /* WhatsApp: tamaño normal cuando hay más espacio */
-  .whatsapp {
-    right: var(--esp-m);
-    bottom: var(--esp-m);
-    padding: var(--esp-m) var(--esp-l);
-    font-size: 1rem;
-  }
-
-  /* Tablas: se recuperan el relleno y el tamaño de letra normales */
-  table {
-    font-size: 1rem;
-    hyphens: manual;
-  }
-
-  th,
-  td {
-    padding: var(--esp-s) var(--esp-m);
-  }
-}
-
-/* Escritorio: desde 1200 px */
-@media (min-width: 1200px) {
-  /* Reservas: formulario (2 partes) e información de contacto (1 parte).
-     En tablet la columna de 1/3 quedaba muy angosta para el correo. */
-  .reservas-layout {
-    grid-template-columns: 2fr 1fr;
-  }
-
-  .portada h1 {
-    font-size: 3.5rem;
-  }
 }

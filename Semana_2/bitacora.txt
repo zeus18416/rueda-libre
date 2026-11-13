@@ -408,3 +408,172 @@ Pendientes:
 
 - A 320 px la tabla de recorridos todavía se pasa unos 37 px. El reto pide 360 px, que sí funciona.
 - Publicar la v1.5 en GitHub Pages y probarla en un celular real.
+
+
+SEMANA 2 - DÍA 2
+
+
+MiniReto 5 - La flota en Bootstrap: primera comparación
+
+Página de pruebas: pruebas/catalogo-bootstrap.html, con la plantilla inicial de la documentación de
+Bootstrap 5.3 (versión 5.3.8 por CDN de jsDelivr: CSS en el head y bootstrap.bundle.min.js antes de </body>,
+ambos con integrity y crossorigin). No enlaza styles.css ni tiene <style> ni style="".
+Rutas desde pruebas/: ../img/flota/... para las fotos y ../paginas/reservas.html para "Reservar".
+
+Grilla usada:
+
+  <div class="container">  ->  <div class="row g-4">  ->  7 x <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+
+Ancho (modo dispositivo) | Breakpoint  | Columnas
+-------------------------|-------------|---------
+360 px                   | < 576       | 1
+576 - 991 px             | sm          | 2
+992 - 1199 px            | lg          | 3
+1280 px                  | xl (>=1200) | 4
+
+Comparativa:
+
+Dato                           | CSS propio (v1.5)                         | Bootstrap
+-------------------------------|-------------------------------------------|---------------------------------------------
+Tiempo invertido               | ___ min (MiniReto 2)                      | ___ min (cronómetro)
+CSS de distribución de la flota| 5 líneas (.flota-cuadricula: 3 declaraciones: display, grid-template-columns, gap) + 7 líneas para la tarjeta en columna (flex) | 0 líneas
+Clases de distribución         | 1 clase propia (flota-cuadricula)         | 7 clases distintas (container, row, g-4, col-12, col-sm-6, col-lg-4, col-xl-3); 4 clases repetidas en cada uno de los 7 modelos = 28 usos
+Media queries                  | 0 (auto-fit + minmax)                     | 0 escritas por mí (las trae Bootstrap)
+
+Qué me dio Bootstrap sin esfuerzo:
+- Cuatro puntos de quiebre ya definidos y probados; solo elijo cuántas columnas quiero en cada uno.
+- Gutters iguales en horizontal y vertical con una sola clase (g-4).
+- Las tarjetas de una fila miden lo mismo con h-100, y "Reservar" queda abajo con d-flex flex-column justify-content-between.
+- Fotos en 4:3 sin recortar con ratio ratio-4x3 + object-fit-contain (antes lo hacía con aspect-ratio y object-fit en CSS).
+
+Qué control perdí:
+- El número de columnas ya no depende del espacio real (auto-fit) sino de breakpoints fijos: tengo que decidirlo yo para cada ancho.
+- Los anchos de los breakpoints (576, 768, 992, 1200, 1400) son los de Bootstrap, no los míos (768 y 1200).
+- El HTML crece: un div extra por tarjeta solo para la columna, y muchas clases en cada elemento.
+- Sin styles.css se pierden las fuentes Montserrat/Open Sans y la paleta de la marca: la página usa los colores del tema oscuro de Bootstrap.
+
+
+MiniReto 6 - Sin una línea de CSS: utilidades
+
+En la página de pruebas, debajo de la flota:
+- Sección "¿Por qué Rueda Libre?": título centrado, lead y cuatro beneficios en la grilla
+  (col-12 col-sm-6 col-lg-3, g-4). Cada beneficio: dato destacado (display-6 fw-bold text-body-emphasis),
+  título (fs-5 fw-semibold) y descripción (text-body-secondary).
+- Franja "¿Listo para rodar?": d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 gap-md-4.
+  En celular texto y enlace quedan en columna y centrados; desde md quedan en fila (text-md-start).
+- Elemento decorativo: foto de la bicicleta blanca con d-none d-md-block (oculta en celulares) y alt="" porque es decorativa.
+- Enlace a reservas destacado solo con utilidades: text-bg-primary fs-5 fw-semibold px-4 py-3 rounded-3 text-decoration-none.
+
+Mapa de color respetado: el azul de botones (primary) solo como fondo del enlace y en bordes decorativos
+(border-primary); los datos destacados van en el color de texto principal, no en el de los enlaces;
+el texto secundario en text-body-secondary.
+
+Comprobación: no hay style="", <style> ni clases inventadas; todas las clases existen en bootstrap.min.css 5.3.8
+(revisé que no hubiera clases de la v4 como ml-*, mr-*, pl-*, text-left o float-right).
+
+Cinco clases que encontré buscando en la documentación:
+
+1. object-fit-contain (Utilities > Object fit): object-fit: contain; la foto se encoge sin recortarse dentro de su caja.
+2. ratio ratio-4x3 (Helpers > Ratios): el contenedor mantiene la proporción 4:3 y el hijo ocupa todo su espacio.
+3. text-bg-primary (Helpers > Color & background): pone fondo primary y un color de texto con contraste suficiente en una sola clase.
+4. flex-shrink-0 (Utilities > Flex): impide que el elemento se encoja en la fila; así el enlace y la foto no se aplastan.
+5. text-md-start (Utilities > Text): alinea el texto a la izquierda desde md; debajo se mantiene text-center.
+
+
+MiniReto 7 - Inicio migra a Bootstrap
+
+index.html carga en este orden: bootstrap.min.css, Google Fonts y css/styles.css (la hoja propia va después
+para ganar los empates de especificidad). El bundle de JavaScript va antes de </body>. En <html> se usa
+data-bs-theme="dark" porque el sitio es oscuro.
+
+Distribución reemplazada por grilla y utilidades:
+- Portada: section.portada (borde y esquinas) > row g-4 g-md-5 align-items-center > dos col-12 col-md-6. Título con display-4 fw-bold.
+- Servicios: row g-4 con col-12 col-md-6 col-xl-3.
+- Flota: el marcado del MiniReto 5 (col-12 col-sm-6 col-lg-4 col-xl-3), con las tarjetas y el botón de la marca.
+- Rutas: row g-4 con col-12 col-md-4.
+- Beneficios y franja: los del MiniReto 6; reemplazan la lista anterior de beneficios. El enlace de la franja usa .boton para tener los estados hover y focus de la marca.
+- main usa container; encabezado, menú y pie usan d-flex / row con utilidades.
+
+Reglas eliminadas de styles.css para inicio: main, section, *, box-sizing, .portada (grid), .portada h1 y su media query,
+.portada img, .rutas-galeria, .flota-cuadricula y sus tarjetas, .precio, .nivel y el margin-bottom de .tarjeta.
+Reglas que en ese momento todavía usaban tarifas y reservas: .encabezado, .marca y #menu (flex), .pie (flex),
+.reservas-layout, .fila-campos y .complementario (margin). Se eliminaron al migrar esas páginas en el MiniReto 8.
+
+Conflictos encontrados con DevTools (Styles) y su solución, sin !important:
+
+1. Colores de Bootstrap en lugar de los de la marca.
+   Problema: con data-bs-theme="dark" el fondo era #212529 y text-body-secondary, border y border-primary usaban
+   los grises y el azul #0d6efd de Bootstrap.
+   Solución: en :root de styles.css se redefinen las variables de Bootstrap con la paleta (--bs-body-bg, --bs-body-color,
+   --bs-secondary-color, --bs-border-color, --bs-primary-rgb, --bs-link-color-rgb...). :root y [data-bs-theme=dark]
+   tienen la misma especificidad (0,1,0) y mi hoja se carga después, por eso gana.
+
+2. main con max-width: 60rem tachado.
+   Problema: al poner class="container" en main, .container (0,1,0) le gana a main (0,0,1): mi max-width y mi padding
+   aparecían tachados y el ancho lo daba Bootstrap (540/720/960/1140 px).
+   Solución: borrar la regla main de styles.css y dejar el espacio vertical con py-4.
+
+3. Relleno de la tarjeta contra el gutter.
+   Problema: .row > * y .tarjeta tienen la misma especificidad (0,1,0). Si las clases col-* van en el mismo article.tarjeta,
+   como styles.css se carga después, el padding de .tarjeta reemplaza el padding del gutter (y su margin-bottom se suma a g-4).
+   Solución: cada tarjeta va dentro de un div col-*, que es el que recibe el gutter; se quitó margin-bottom de .tarjeta.
+
+Extra: display-4 trae font-weight: 300 y le gana a mi h1 { font-weight: 700 } por ser clase; se agregó fw-bold.
+
+Las fuentes (Montserrat en títulos, Open Sans en texto) y los colores de marca se mantienen.
+Revisado a 360, 768 y 1280 px.
+
+
+MiniReto 8 - Rueda Libre v2.0-beta: migración completa
+
+Tarifas: row g-4 g-lg-5. Las dos tablas van en col-12 col-lg-8 y "Información importante" y "¿Qué llevar?" en
+col-12 col-lg-4: una columna hasta lg y dos columnas desde lg. Los estilos de tabla de la semana 1 se conservan.
+
+Reservas: formulario en col-12 col-md-8 e información de contacto en col-12 col-md-4. Filas de campos cortos con la grilla:
+documento + celular y plan + cantidad en row > col-12 col-sm-6. Validación nativa conservada: comparé la v1.5 con la
+versión actual y se mantienen los 9 required, minlength, maxlength, los 2 pattern, los 2 min, los 2 max, los 2 title
+y los 11 type.
+
+Conflictos de estas páginas:
+
+4. Títulos de las tablas debajo de la tabla: Reboot pone caption-side: bottom. Solución: caption-side: top en table y
+   color: var(--texto) en caption (Reboot lo ponía gris).
+5. legend fuera del borde del fieldset: Reboot le pone float: left, width: 100% y letra grande. Solución: float: none,
+   width: auto y font-size: 1.1rem en legend (1rem en .opciones legend).
+6. Correo desbordado en la columna de 4/12 a 768 px: hola@ruedalibre.example no cabe en ~200 px. Solución: utilidad
+   text-break en el enlace y relleno p-3 en el aside hasta lg (p-lg-4 desde ahí).
+
+Limpieza de styles.css: solo quedan variables, tipografía, colores, encabezado y menú (colores y estados), tarjetas,
+botón, tablas, formulario, estados y los colores de la etiqueta "Nuevo" y de WhatsApp. La posición de WhatsApp pasó a
+utilidades (position-fixed bottom-0 end-0 m-2 m-md-3). Queda una sola media query, la de las tablas.
+
+Comparativa final:
+
+Dato                          | v1.5 (CSS propio)        | v2.0-beta (Bootstrap)    | Diferencia
+------------------------------|--------------------------|--------------------------|----------------------
+Líneas de styles.css          | 559 (tag v1.5 en GitHub) | 349                      | -210 (-37,6 %)
+Líneas sin contar las vacías  | 471                      | 293                      | -178 (-37,8 %)
+Media queries                 | 2 (768 y 1200 px)        | 1 (tablas, 768 px)       | -1
+Reglas de distribución        | grid/flex en portada, flota, rutas, reservas, fila de campos, encabezado y pie | 0 | todas en clases
+Tiempo invertido              | ___ h (semana 2, días 1 y 2) | ___ h (MiniRetos 5 a 8) |
+CSS extra para Bootstrap      | -                        | 11 variables --bs-* y 2 arreglos de Reboot (caption y legend) |
+
+Ventajas observadas:
+- La distribución de las tres páginas sale de clases; styles.css bajó más de un tercio y es solo identidad.
+- Los breakpoints y los gutters son iguales en todo el sitio sin escribir media queries.
+- Reutilicé el marcado de la página de pruebas casi sin cambios en inicio.
+
+Desventajas observadas:
+- El HTML es más largo y tiene divs que solo existen para la grilla.
+- Reboot cambia elementos que yo ya había estilizado (caption, legend, márgenes y peso de los títulos) y hay que
+  revisar la cascada con DevTools.
+- Se depende de un CDN externo y se carga un CSS de unos 230 KB del que se usa una parte pequeña.
+- Para que las utilidades usen la marca hay que conocer las variables --bs-*.
+
+Conclusión: Bootstrap sí redujo el trabajo de distribución: ya no escribo ni mantengo grid, flex ni media queries por
+sección, y la hoja propia quedó en 349 líneas dedicadas a la identidad. El costo es un HTML más cargado de clases y tener
+que resolver los choques con Reboot; con la hoja propia cargada después y las variables --bs-* redefinidas, se resolvieron
+sin !important. Para los próximos componentes (navbar y botones) la base ya está lista.
+
+Revisión final: inicio, tarifas y reservas revisadas a 360, 768 y 1280 px.
+Sitio v2.0-beta: ____________________
