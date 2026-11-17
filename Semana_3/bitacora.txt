@@ -1,0 +1,43 @@
+BITÁCORA DE DESARROLLO - RUEDA LIBRE · SEMANA 3 (RUEDA NOCTURNA)
+
+DÍA 1
+
+
+MiniReto 1 - Prototipo nocturno con Play CDN
+
+Archivo: nocturna/prototipo.html. Carga Tailwind con el Play CDN v4 en el head:
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+Sin <style>, sin style="" y sin clases de Bootstrap: todo el estilo sale de utilidades.
+
+Elementos de la sección principal: etiqueta "Nuevo · Jueves a sábado", un solo h1 "Rueda Nocturna", subtítulo,
+dos datos destacados ("3 rutas" y "Desde $55.000") en una lista y el enlace "Inscríbete".
+
+Familias de utilidades usadas:
+- Espaciado: px-6, py-20, space-y-8, mx-auto, px-4, py-1, p-4, gap-4, px-8, py-3.
+- Tamaños: max-w-3xl, max-w-xl, max-w-md, w-fit, w-1/2.
+- Colores: bg-slate-950, bg-slate-900, bg-amber-400, bg-amber-400/15, text-slate-100, text-slate-300, text-slate-400,
+  text-amber-300, text-slate-950, text-white, hover:bg-amber-300.
+- Tipografía: text-xs, text-sm, text-lg, text-xl, text-5xl, font-semibold, font-bold, font-extrabold, leading-tight,
+  leading-relaxed, tracking-widest, tracking-tight, tracking-wide, uppercase.
+
+El botón "Inscríbete": Bootstrap (semana 2) vs Tailwind (hoy)
+
+Semana 2 (Bootstrap): el enlace era <a href="paginas/reservas.html" class="boton">Reservar ahora</a>. Bootstrap trae
+.btn y .btn-primary, pero su azul no era el de la marca, así que el botón quedó como una clase propia .boton en
+css/styles.css (cargada después de bootstrap.min.css): display, padding, fuente, peso, color, fondo, borde, radio y
+cursor con las variables de la marca (--boton, --radio, --esp-m...), más una regla .boton:hover, .boton:focus.
+El HTML lleva un solo nombre ("boton") y el aspecto vive en la hoja de estilos. Con .btn btn-primary habría sido igual:
+un nombre de componente que ya trae el aspecto decidido por Bootstrap.
+
+Hoy (Tailwind): no hay clase "boton" ni hoja propia. El aspecto se arma en el HTML con utilidades:
+<a class="inline-block rounded-xl bg-amber-400 px-8 py-3 text-base font-bold uppercase tracking-wide
+   text-slate-950 hover:bg-amber-300">Inscríbete</a>
+Cada clase hace una sola cosa: inline-block (que el padding funcione en un enlace), rounded-xl (radio), bg-amber-400
+(fondo), px-8 py-3 (relleno), font-bold / uppercase / tracking-wide (tipografía), text-slate-950 (texto) y
+hover:bg-amber-300 (estado). El estado hover se escribe en la misma etiqueta, sin una regla aparte.
+
+Diferencia clave: un framework de componentes (Bootstrap) te da piezas ya terminadas con nombre (.btn, .card, .alert)
+y uno las personaliza sobrescribiendo su CSS o sus variables. Uno utility-first (Tailwind) no trae componentes: da
+clases pequeñas de una sola propiedad y el componente se compone en el marcado. Con Bootstrap peleé contra sus colores
+y su Reboot; con Tailwind el diseño lo decido yo desde el principio, a cambio de un class más largo que hay que
+mantener igual en cada copia del botón.
