@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#020617"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="320" fill="url(#cielo)"/>
+  <path d="M0 170 Q160 90 320 150 T640 120 V320 H0 Z" fill="#1e293b"/>
+  <path d="M0 230 Q200 170 380 220 T640 200 V320 H0 Z" fill="#0f172a"/>
+  <g fill="#fde68a">
+    <circle cx="60" cy="250" r="3"/><circle cx="110" cy="240" r="3"/><circle cx="170" cy="255" r="3"/>
+    <circle cx="230" cy="235" r="3"/><circle cx="300" cy="260" r="3"/><circle cx="360" cy="245" r="3"/>
+    <circle cx="420" cy="265" r="3"/><circle cx="480" cy="240" r="3"/><circle cx="540" cy="255" r="3"/>
+    <circle cx="600" cy="235" r="3"/><circle cx="140" cy="285" r="3"/><circle cx="260" cy="290" r="3"/>
+    <circle cx="390" cy="295" r="3"/><circle cx="510" cy="285" r="3"/>
+  </g>
+  <g fill="#e2e8f0">
+    <circle cx="80" cy="40" r="1.5"/><circle cx="200" cy="70" r="1.5"/><circle cx="330" cy="30" r="1.5"/>
+    <circle cx="470" cy="60" r="1.5"/><circle cx="590" cy="35" r="1.5"/>
+  </g>
+</svg>
