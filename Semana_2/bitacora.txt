@@ -435,7 +435,7 @@ Comparativa:
 
 Dato                           | CSS propio (v1.5)                         | Bootstrap
 -------------------------------|-------------------------------------------|---------------------------------------------
-Tiempo invertido               | ___ min (MiniReto 2)                      | ___ min (cronómetro)
+Tiempo invertido               | 4 h (MiniReto 2)                          | 2 h (MiniReto 5)
 CSS de distribución de la flota| 5 líneas (.flota-cuadricula: 3 declaraciones: display, grid-template-columns, gap) + 7 líneas para la tarjeta en columna (flex) | 0 líneas
 Clases de distribución         | 1 clase propia (flota-cuadricula)         | 7 clases distintas (container, row, g-4, col-12, col-sm-6, col-lg-4, col-xl-3); 4 clases repetidas en cada uno de los 7 modelos = 28 usos
 Media queries                  | 0 (auto-fit + minmax)                     | 0 escritas por mí (las trae Bootstrap)
@@ -555,7 +555,7 @@ Líneas de styles.css          | 559 (tag v1.5 en GitHub) | 349                 
 Líneas sin contar las vacías  | 471                      | 293                      | -178 (-37,8 %)
 Media queries                 | 2 (768 y 1200 px)        | 1 (tablas, 768 px)       | -1
 Reglas de distribución        | grid/flex en portada, flota, rutas, reservas, fila de campos, encabezado y pie | 0 | todas en clases
-Tiempo invertido              | ___ h (semana 2, días 1 y 2) | ___ h (MiniRetos 5 a 8) |
+Tiempo invertido              | No registrado completo; solo medí el MiniReto 2 (4 h) | No registrado completo; solo medí el MiniReto 5 (2 h) |
 CSS extra para Bootstrap      | -                        | 11 variables --bs-* y 2 arreglos de Reboot (caption y legend) |
 
 Ventajas observadas:
@@ -576,4 +576,4 @@ que resolver los choques con Reboot; con la hoja propia cargada después y las v
 sin !important. Para los próximos componentes (navbar y botones) la base ya está lista.
 
 Revisión final: inicio, tarifas y reservas revisadas a 360, 768 y 1280 px.
-Sitio v2.0-beta: ____________________
+Sitio v2.0-beta: https://zeus18416.github.io/rueda-libre/Semana_2/index.html
