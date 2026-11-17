@@ -114,3 +114,42 @@ Base: inline-block rounded-full border px-3 py-1 text-xs font-bold uppercase tra
 Efecto al pasar el mouse: cambia el color del borde (slate-800 -> amber-400) y la sombra crece. El borde ya existe con
 border-2 desde el inicio y solo cambia de color, y la sombra no ocupa espacio, así que el contenido no se mueve.
 Sin transform ni cambios de tamaño.
+
+
+MiniReto 4 - Kit de componentes Rueda Nocturna v0.1
+
+Página: nocturna/componentes.html con los tres botones, la card de Luces del Centro (y las tres etiquetas de nivel),
+tres alertas y dos campos de formulario.
+
+Alertas: space-y-2 rounded-xl border-l-4 p-4 shadow-md + fondo suave del color (bg-X-400/10) y borde lateral del color
+(border-X-400). Título text-base font-bold text-X-200, texto text-sm leading-relaxed text-slate-300.
+- Información: sky.
+- Éxito: emerald, con role="status" para que el lector de pantalla la anuncie como aviso (sin interrumpir).
+- Advertencia: amber.
+
+Campos (correo type="email" y celular type="tel"): <label for="..."> visible asociado al id del input, borde
+(border-2 border-slate-700), relleno (px-4 py-3), placeholder, texto de ayuda debajo unido con aria-describedby y foco
+visible: focus:border-amber-400 focus:outline-none focus:ring-4 focus:ring-amber-200/40.
+
+Reglas del kit
+1. Radios: rounded-xl en todo lo que es caja o control (botón, card, alerta, input, formulario, datos del hero);
+   rounded-full solo para etiquetas tipo píldora (campaña y nivel).
+2. Espaciado (escala de Tailwind, siempre los mismos pasos):
+   - Relleno interno: p-4 en cajas pequeñas (alerta, dato), p-6 en cajas grandes (card, formulario).
+   - Controles: px-6 py-3 en botones, px-4 py-3 en inputs; píldoras px-3 py-1.
+   - Separación entre elementos: space-y-2 dentro de un bloque pequeño (campo, alerta, dato),
+     space-y-4 dentro de una card o sección, gap-4 entre botones o cajas en fila.
+3. Colores:
+   - Fondo de página slate-950, superficie slate-900, borde slate-800 (cajas) y slate-700 (controles).
+   - Texto principal white / slate-100, secundario slate-300, auxiliar slate-400.
+   - Acento de la marca nocturna: amber (botón principal, contorno, precio, foco).
+   - Semánticos: sky = información, emerald = éxito / Fácil, amber = advertencia / Medio, rose = Difícil.
+   - Fondos suaves siempre con /10 o /15 y bordes de etiqueta con /50.
+4. Bordes y sombras: border-2 en controles y cards, border-l-4 en alertas, border en píldoras. shadow-md en reposo y
+   shadow-lg / shadow-xl en hover.
+5. Foco: siempre focus:outline-none + focus:ring-4 con un tono claro (amber-200, slate-300), y ring-offset-2 del color
+   del fondo en los botones.
+
+Publicación: GitHub Pages desde la rama main.
+URL: https://zeus18416.github.io/rueda-libre/Semana_3/nocturna/componentes.html
+(PENDIENTE: comprobar en línea que output.css carga con 200 y no 404)
