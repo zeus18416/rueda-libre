@@ -431,3 +431,62 @@ Pruebas (todas funcionaron):
 - Solo teclado: Tab recorre los campos en orden; las flechas cambian la opción dentro de cada grupo de radios;
   Espacio marca la casilla; Enter en el botón envía.
 - Vista: en el celular una columna y en escritorio dos; se ve bien en modo claro y en modo oscuro.
+
+
+MiniReto 10 - Contrarreloj 2: un solo ecosistema
+
+Tiempo máximo: 40 minutos.
+Tiempo real: más de 40 minutos (me pasé del límite).
+Pendiente al terminar el tiempo: el carrusel. El enunciado pedía "una cuarta diapositiva", pero el sitio v2.0 no
+tenía carrusel, así que hubo que crearlo completo (las cuatro diapositivas, controles e indicadores) y además
+corregir las flechas, que el tema oscuro de Bootstrap pintaba en negro. Eso no cupo en los 40 minutos; la navbar y
+los enlaces de la landing sí. Para la prueba de desempeño: revisar primero qué existe y qué falta antes de arrancar
+el cronómetro, y tener a mano la estructura del carousel de Bootstrap.
+
+Sitio v2.0 (Bootstrap, carpeta Semana_2/):
+- Navbar: agregué "Rueda Nocturna" como cuarto enlace en las tres páginas.
+  index.html -> ../Semana_3/nocturna/index.html
+  paginas/tarifas.html y paginas/reservas.html -> ../../Semana_3/nocturna/index.html
+- Carrusel: el sitio v2.0 no tenía carrusel, así que lo creé en index.html, debajo de la portada (sección
+  "Destacados"), con el componente carousel de Bootstrap (el JS ya estaba cargado con bootstrap.bundle.min.js):
+  1. Alquiler de bicicletas -> Reservas. 2. Bicicletas eléctricas -> Tarifas. 3. Recorridos guiados -> Tarifas
+  #recorridos. 4. Rueda Nocturna (cuarta diapositiva) -> ../Semana_3/nocturna/index.html, con la ilustración de Luna
+  en Las Palmas de la landing y una etiqueta "Nuevo · Jueves a sábado" en Amarillo Farol.
+  Cada diapositiva tiene imagen (ratio-21x9) y debajo el texto y el botón .boton, para no poner texto encima de
+  fotos. Indicadores con aria-label por diapositiva; flechas con texto oculto "Anterior" y "Siguiente".
+  Problema encontrado: con data-bs-theme="dark", Bootstrap pinta las flechas y los indicadores en negro (variables
+  --bs-carousel-control-icon-filter y --bs-carousel-indicator-active-bg). Las redefiní en #carrusel-destacados para
+  dejarlos claros, y las flechas llevan un círculo color Fondo para verse también sobre las fotos con fondo blanco.
+
+Landing (Tailwind, carpeta Semana_3/nocturna/):
+- El logo lleva al inicio del sitio: ../../Semana_2/index.html (con aria-label "Rueda Libre: ir al inicio del
+  sitio").
+- Botón "Reserva tu bici" (btn-contorno) en la franja, hacia ../../Semana_2/paginas/reservas.html.
+- En el pie, enlace "Ir al sitio Rueda Libre".
+
+Rutas relativas: el repositorio publica Semana_2/ y Semana_3/ lado a lado. Desde Semana_2/index.html se sube cero
+niveles para entrar a ../Semana_3; desde Semana_2/paginas/ hay que subir dos (../../). Desde
+Semana_3/nocturna/index.html se suben dos niveles (../../Semana_2/). GitHub Pages distingue mayúsculas, así que las
+carpetas van como Semana_2 y Semana_3, igual que en el repo.
+
+Marca igual en ambos productos (mismos valores):
+
+Color             | Sitio v2.0 (styles.css)                 | Landing (@theme)
+------------------|-----------------------------------------|-----------------
+#0F172A           | --fondo (y --bs-body-bg)                | --color-noche
+#F1F5F9           | --texto (y --bs-body-color)             | --color-niebla
+#A8B5C9           | --texto-secundario (--bs-secondary-color)| --color-bruma
+#38BDF8           | --enlace (--bs-link-color-rgb 56,189,248)| --color-cielo
+#2563EB           | --boton (--bs-primary-rgb 37,99,235)    | --color-ruta
+#FFD166           | --farol (nuevo, etiqueta del carrusel)  | --color-farol
+
+- Fuentes: Montserrat para títulos y Open Sans para texto en los dos, desde Google Fonts.
+- Pie: los mismos datos de contacto en ambos (El Poblado, Medellín y hola@ruedalibre.example).
+
+Verificación de enlaces:
+- Local: revisé los 86 enlaces y rutas de imágenes relativos de las tres páginas del sitio, la landing y el kit;
+  todos apuntan a archivos y anclas que existen. En el navegador funcionaron los cuatro recorridos: navbar de las
+  tres páginas -> landing, cuarta diapositiva del carrusel -> landing, logo e "Ir al sitio Rueda Libre" -> inicio
+  del sitio, y "Reserva tu bici" -> reservas.
+- GitHub Pages: (PENDIENTE: después del push, abrir sitio -> Rueda Nocturna -> Reserva tu bici -> logo, y revisar en
+  DevTools > Network que no haya 404)

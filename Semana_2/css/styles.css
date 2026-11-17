@@ -13,6 +13,7 @@
   --texto-secundario: #A8B5C9;
   --enlace: #38BDF8;
   --boton: #2563EB;
+  --farol: #FFD166; /* Amarillo Farol: color de la campaña Rueda Nocturna */
 
   --fuente-titulos: "Montserrat", Arial, sans-serif;
   --fuente-texto: "Open Sans", Arial, sans-serif;
@@ -156,6 +157,48 @@ textarea:focus {
   color: var(--fondo);
   background-color: var(--enlace);
   border-color: var(--enlace);
+}
+
+/* Etiqueta de la campaña Rueda Nocturna (mismo Amarillo Farol del @theme de la landing) */
+.etiqueta-farol {
+  display: inline-block;
+  padding: var(--esp-xs) var(--esp-m);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fondo);
+  background-color: var(--farol);
+  border-radius: 999px;
+}
+
+/* Carrusel: los controles quedan sobre la imagen, no sobre el texto */
+#carrusel-destacados .carousel-control-prev,
+#carrusel-destacados .carousel-control-next {
+  height: 50%;
+  opacity: 1;
+}
+
+/* Con data-bs-theme="dark", Bootstrap pinta flechas e indicadores en negro (variables --bs-carousel-*):
+   se devuelven a claro y las flechas llevan un círculo de Fondo para verse también sobre fotos blancas. */
+#carrusel-destacados {
+  --bs-carousel-control-icon-filter: none;
+  --bs-carousel-indicator-active-bg: var(--texto);
+}
+
+#carrusel-destacados .carousel-control-prev-icon,
+#carrusel-destacados .carousel-control-next-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--fondo);
+  background-size: 50%;
+  border-radius: 50%;
+}
+
+#carrusel-destacados .carousel-control-prev:focus .carousel-control-prev-icon,
+#carrusel-destacados .carousel-control-next:focus .carousel-control-next-icon {
+  outline: 3px solid var(--texto);
+  outline-offset: 2px;
 }
 
 /* Contenido complementario (el relleno va con utilidades p-*) */
