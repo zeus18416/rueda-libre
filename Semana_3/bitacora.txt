@@ -152,4 +152,224 @@ Reglas del kit
 
 Publicación: GitHub Pages desde la rama main.
 URL: https://zeus18416.github.io/rueda-libre/Semana_3/nocturna/componentes.html
-(PENDIENTE: comprobar en línea que output.css carga con 200 y no 404)
+Comprobado en línea: componentes.html, src/output.css y las imágenes cargan con 200, sin errores 404.
+
+
+DÍA 2
+
+
+MiniReto 5 - Maquetación de la landing
+
+Archivo: nocturna/index.html (versión de escritorio; lo responsive llega en el MiniReto 6).
+
+Estructura semántica:
+- <header>: logo + enlaces + botón "Inscríbete".
+- <main> con una <section> por bloque, cada una con id para las anclas: #inicio (sección principal), #rutas,
+  #como-funciona e #inscripcion (franja). Cada section tiene su h2 y aria-labelledby; el único h1 sigue siendo
+  "Rueda Nocturna".
+- <footer> con tres bloques.
+
+Contenedor común: todas las secciones, el encabezado y el pie envuelven su contenido en
+mx-auto max-w-6xl px-6 (centrado, ancho máximo de 72rem y relleno lateral de 1.5rem). El relleno vertical va en la
+section (py-20) y no en el contenedor, para que el contenedor sea idéntico en todas. Los textos largos (hero y títulos
+de sección) van además dentro de un max-w-3xl centrado para que las líneas no queden demasiado largas.
+
+Encabezado con flex: flex items-center justify-between. A la izquierda el logo (imagen del sitio v2.0 en
+../../Semana_2/img/logo.png sobre un círculo blanco, porque el logo tiene fondo claro) y el texto "Rueda Libre
+Nocturna"; a la derecha otro flex con el nav (ul flex gap-6) y el botón principal del kit. items-center los centra
+verticalmente aunque el botón sea más alto que los enlaces.
+
+Anclas: Rutas -> #rutas, ¿Cómo funciona? -> #como-funciona, Inscripción e Inscríbete -> #inscripcion. Los botones de
+las cards y del hero también llevan a #inscripcion, donde irá el formulario del MiniReto 9.
+
+Rutas: las tres cards en grid grid-cols-3 gap-6. Las cards son las mismas del MiniReto 3, sin cambiar clases; solo
+cambió el destino del botón (#inscripcion).
+
+¿Cómo funciona?: cuatro pasos en una <ol> con grid grid-cols-4 gap-6.
+Por qué grid y no flex: son cuatro elementos del mismo tipo que deben medir exactamente lo mismo y quedar alineados
+como columnas. Con grid defino las columnas en el contenedor (grid-cols-4) y cada paso ocupa una, aunque un texto sea
+más largo que otro; en el MiniReto 6 solo cambio el número de columnas por breakpoint (1, 2 y 4). Con flex tendría
+que dar a cada hijo un ancho (w-1/4 o flex-1) y, al pasar a dos columnas, manejar flex-wrap y los anchos a mano.
+Flex lo dejo para filas donde el contenido decide el tamaño: encabezado, franja y pie.
+Cada paso usa la caja del kit (rounded-xl border-2 border-slate-800 bg-slate-900 p-6 shadow-md, la misma del
+formulario de componentes.html) y la píldora ámbar del kit para "Paso 1..4". Es una <ol> porque el orden importa.
+
+Franja de inscripción: caja del kit con flex items-center justify-between gap-6: texto a la izquierda y, a la
+derecha, el botón principal y el de contorno (shrink-0 para que no se aplasten). Como la franja es slate-900, los
+botones usan focus:ring-offset-slate-900, igual que el botón de las cards.
+
+Pie: flex justify-between gap-6 con tres bloques: Rueda Libre, Contacto (mismos datos del pie del sitio v2.0: El
+Poblado, Medellín y hola@ruedalibre.example) y Horario de Rueda Nocturna (jueves a sábado, 7:00 p. m.).
+
+Componentes: no creé variantes nuevas. Botones, cards, píldoras y la caja son copias de componentes.html; el enlace
+del correo usa el mismo estilo del enlace "Volver a la landing" del kit.
+
+output.css regenerado con la CLI (aparecen grid-cols-3, grid-cols-4, max-w-6xl, justify-between, shrink-0,
+border-t).
+
+
+MiniReto 6 - La noche cabe en tu celular: responsive
+
+Revisión a 360 px antes del cambio (landing del MiniReto 5, solo escritorio):
+- Encabezado: el texto del logo se monta sobre los enlaces y "Inscripción" y el botón quedan fuera de la pantalla.
+- Rutas: grid-cols-3 deja tres columnas de unos 70 px; los nombres, los datos y los precios quedan cortados y los
+  botones "Inscríbete" se ven a medias.
+- ¿Cómo funciona?: grid-cols-4 deja columnas de unos 50 px con una palabra por línea.
+- Franja: el título se parte palabra por palabra y el botón de contorno se sale por la derecha (scroll horizontal).
+- Pie: los tres bloques en fila quedan muy apretados.
+- El hero sí aguanta (los dos datos y los botones ya tenían flex-wrap).
+
+Cambios mobile-first (sin prefijo = celular; sm: 640 px, md: 768 px, lg: 1024 px):
+- Encabezado: flex flex-col items-center gap-4 md:flex-row md:justify-between. Apilado en el celular y en fila desde
+  md. El nav lleva hidden md:block: en el celular se ocultan los enlaces y queda visible el botón "Inscríbete".
+- Rutas: grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 (una, dos y tres columnas).
+- Pasos: grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 (una, dos y cuatro columnas).
+- Franja: flex flex-col gap-6 md:flex-row md:items-center md:justify-between; los botones con flex-wrap y
+  md:shrink-0. Relleno p-6 y md:p-8.
+- Pie: flex flex-col gap-8 md:flex-row md:justify-between.
+- Tipografía y espaciado por breakpoint: h1 text-4xl sm:text-5xl lg:text-6xl; h2 text-3xl lg:text-4xl; subtítulo
+  text-lg lg:text-xl; secciones py-12 md:py-20 (más aire en pantallas grandes).
+- Ninguna clase de celular lleva sm:; sm: solo aparece para pasar a dos columnas o subir tamaños.
+
+Pruebas en modo dispositivo:
+
+Ancho   | Encabezado                     | Rutas       | Pasos       | Franja y pie           | Scroll horizontal
+--------|--------------------------------|-------------|-------------|------------------------|------------------
+360 px  | Apilado, sin enlaces, botón    | 1 columna   | 1 columna   | Apilados               | No
+768 px  | En fila con enlaces y botón    | 2 columnas  | 2 columnas  | En fila                | No
+1024 px | En fila con enlaces y botón    | 3 columnas  | 4 columnas  | En fila                | No
+1280 px | En fila, contenido a 72rem     | 3 columnas  | 4 columnas  | En fila                | No
+
+A 768 px la tercera card de rutas queda sola en la segunda fila, alineada a la izquierda. A 1024 px la card
+"Miradores de la Ciudad" es un poco más alta porque su nombre ocupa dos líneas.
+
+
+MiniReto 7 - Marca nocturna: tema propio y modo oscuro
+
+@theme en src/input.css con los cinco colores del sitio v2.0 (los mismos códigos de css/styles.css de la semana 2)
+y Amarillo Farol:
+- --color-noche: #0F172A   Azul Noche (fondo del sitio, --fondo)
+- --color-niebla: #F1F5F9  Niebla (texto principal, --texto)
+- --color-bruma: #A8B5C9   Bruma (texto secundario, --texto-secundario)
+- --color-cielo: #38BDF8   Azul Cielo (enlaces, --enlace)
+- --color-ruta: #2563EB    Azul Ruta (botones, --boton)
+- --color-farol: #FFD166   Amarillo Farol (nuevo, campaña)
+- --font-titulos: "Montserrat" y --font-texto: "Open Sans" (las mismas del sitio), cargadas desde Google Fonts.
+Con eso Tailwind genera bg-noche, text-farol, border-cielo, font-titulos, font-texto, etc.
+Además --color-*: initial borra la paleta genérica de Tailwind: si queda un slate-900 o un amber-400 en el HTML, la
+clase simplemente no se genera. Comprobado: en output.css solo aparecen --color-noche, niebla, bruma, cielo, ruta,
+farol y white; ninguna clase slate, amber, emerald, rose o sky.
+
+Fuentes: body con font-texto; h1, h2, h3, precios y datos destacados con font-titulos.
+
+Reemplazo de colores (landing y componentes.html):
+- Fondo de página: bg-niebla / dark:bg-noche. Cajas (cards, pasos, franja, formulario): bg-white /
+  dark:bg-niebla/5. Bordes: border-noche/10 / dark:border-niebla/10.
+- Texto principal: text-noche / dark:text-niebla. Secundario: text-noche/75 / dark:text-bruma. Datos (dt):
+  text-noche/70 / dark:text-bruma.
+- Acento (precios, "Nocturna", datos del hero): text-ruta en claro y text-farol en oscuro.
+- Enlaces: text-ruta / dark:text-cielo.
+- Botones: principal bg-ruta text-white / dark:bg-farol dark:text-noche; secundario bg-noche/10 / dark:bg-niebla/10;
+  contorno border-ruta text-ruta / dark:border-farol dark:text-farol.
+- Etiquetas de nivel (color + texto): Fácil = Azul Cielo, Medio = Amarillo Farol, Difícil = Azul Ruta. El texto va en
+  noche (claro) o niebla (oscuro) para que siempre cumpla; el color está en el fondo y el borde.
+- Alertas: información = cielo, éxito = ruta, advertencia = farol (fondo /10 y borde lateral del color).
+- Foco: ring-ruta/50 en claro y ring-farol/60 en oscuro.
+Esto reemplaza los colores slate / amber / sky / emerald / rose de las reglas del kit del MiniReto 4; radios,
+espaciados, bordes y sombras siguen iguales.
+
+Modo oscuro: variante dark: con la estrategia por defecto (prefers-color-scheme del sistema), sin configurar nada.
+El modo claro es el estilo sin prefijo.
+
+Contraste (WCAG, mínimo 4.5:1 texto normal). Calculado con la fórmula de luminancia del verificador; en los colores
+con opacidad, sobre el color ya mezclado con su fondo:
+
+Modo oscuro                                          | Relación | Resultado
+-----------------------------------------------------|----------|----------
+Niebla sobre Azul Noche (texto)                      | 16.30:1  | Cumple
+Bruma sobre Azul Noche (texto secundario)            |  8.60:1  | Cumple
+Bruma sobre caja (noche + niebla/5)                  |  7.65:1  | Cumple
+Amarillo Farol sobre caja (precios)                  | 11.01:1  | Cumple
+Azul Noche sobre Amarillo Farol (botón principal)    | 12.38:1  | Cumple
+Azul Cielo sobre Azul Noche (enlaces)                |  8.33:1  | Cumple
+Niebla sobre etiqueta Difícil (ruta/40)              | 10.56:1  | Cumple
+Niebla sobre etiqueta Fácil (cielo/15)               | 12.36:1  | Cumple
+Niebla sobre etiqueta Medio (farol/15)               | 11.53:1  | Cumple
+Bruma sobre alerta advertencia (farol/10)            |  6.93:1  | Cumple
+Azul Ruta sobre Azul Noche                           |  3.45:1  | NO cumple
+
+La combinación delicada es Azul Ruta sobre Azul Noche (es el equivalente en mi marca del "Verde Ruta sobre Azul
+Noche" del enunciado): 3.45:1 solo sirve para texto grande. Corrección: en modo oscuro el Azul Ruta nunca va como
+texto. Los precios, el botón de contorno y "Nocturna" pasan a Amarillo Farol (dark:text-farol), y en la etiqueta
+Difícil el azul queda solo en el fondo y el borde, con el texto en Niebla.
+
+Modo claro (para comprobar que sigue funcionando): Azul Noche sobre Niebla 16.30:1, Azul Noche al 75% sobre Niebla
+7.59:1, Azul Ruta sobre blanco 5.17:1 (precios), blanco sobre Azul Ruta 5.17:1 (botón), placeholder noche/60 sobre
+blanco 4.69:1. Todo cumple.
+
+Prueba: emulé prefers-color-scheme: dark y light en el navegador. En oscuro todas las secciones cambian juntas (fondo,
+cajas, bordes, textos, botones, etiquetas y campos); en claro la página se ve como antes pero con los colores de la
+marca.
+
+
+MiniReto 8 - Código legible y veredicto: Bootstrap vs Tailwind
+
+Listas de clases más repetidas en la landing del MiniReto 5 (conteo en index.html):
+- Botón principal (20 clases): 6 veces (encabezado, hero, tres cards y franja).
+- Botón de contorno (19 clases): 2 veces. Botón secundario: 1 vez.
+- Fila de datos de la card (flex items-baseline justify-between gap-4 border-b ... pb-2): 9 veces.
+- Nombre del dato (text-xs uppercase tracking-wider ...): 9 veces. Valor del dato: 9 veces.
+- Etiqueta tipo píldora (rounded-full border px-3 py-1 ...): 7 veces (3 niveles + 4 pasos).
+- Card de ruta: 3 veces. Caja del kit (pasos): 4 veces.
+
+Clases con @apply (tres, dentro de @layer components en src/input.css): .btn-principal, .btn-secundario y
+.btn-contorno. Cada una junta base, colores, dark:, hover: y focus:. Los 9 botones de la landing y los 4 de
+componentes.html usan solo esa clase; los de las cards añaden block w-full text-center (las utilidades ganan a la
+capa components, así que block reemplaza al inline-block del botón). La página se ve igual que antes.
+Las cards, píldoras, pasos y filas de datos no van con @apply: son bloques grandes con varios elementos, así que
+mantengo el marcado del kit y lo copio igual en las tres cards y en componentes.html.
+
+Orden de clases en cada elemento: layout (flex, grid, hidden, w-, h-) -> espaciado (p-, m-, gap-, space-) ->
+tipografía (font-, text-tamaño, leading-, tracking-) -> color (bg-, text-color, border-color, shadow, y sus dark:)
+-> estados (hover:, focus:).
+
+Tamaños medidos:
+Compilación: npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --minify
+
+Archivo                                   | Sin comprimir | Transferido (gzip)
+------------------------------------------|---------------|-------------------
+Tailwind output.css (sin --minify)        |  36.270 B     |  4.922 B
+Tailwind output.css (con --minify)        |  28.235 B     |  4.609 B
+Bootstrap 5.3.8 bootstrap.min.css         | 232.111 B     | 30.872 B
+Bootstrap 5.3.8 bootstrap.bundle.min.js   |  80.496 B     | 23.743 B
+Sitio v2.0 css/styles.css (propio)        |   7.072 B     |  -
+Total sitio v2.0 (Bootstrap CSS + JS)     | 312.607 B     | 54.615 B
+
+El CSS de Tailwind minificado pesa unas 8 veces menos que el CSS de Bootstrap (28 KB frente a 232 KB) y unas 11
+veces menos que Bootstrap CSS + JS. Comprimido, la landing descarga 4,6 KB de estilos frente a 54,6 KB del sitio v2.0.
+(output.css creció de 22 KB a 28 KB al agregar el tema, las variantes dark: y los tres breakpoints, y aun así es
+mucho menor.)
+
+Comparativa Bootstrap vs Tailwind (con lo que construí en las semanas 2 y 3):
+
+1. Curva de aprendizaje. Bootstrap fue más rápido para arrancar: navbar, carrusel, grilla y formulario salen con
+   copiar el componente de la documentación. Lo difícil vino después, al pelear con su Reboot y su azul para que
+   respetara la marca (tuve que redefinir --bs-* en :root). Tailwind pide aprender muchos nombres de utilidades y
+   pensar en mobile-first desde el inicio, pero una vez aprendidos no hay sorpresas: cada clase hace una sola cosa.
+2. Personalización. Con Bootstrap la marca se consigue sobrescribiendo (variables --bs-*, una hoja propia cargada
+   después y la clase .boton). Con Tailwind la marca es el punto de partida: seis colores y dos fuentes en @theme,
+   y con --color-*: initial es imposible colarse un color que no sea de la marca. El modo oscuro con dark: salió
+   sin escribir CSS propio.
+3. Tamaño final. Medido arriba: 4,6 KB transferidos de Tailwind contra 54,6 KB de Bootstrap (CSS + JS), porque la
+   CLI genera solo las clases que uso, y Bootstrap manda todos sus componentes aunque use unos pocos.
+4. Casos de uso. Bootstrap conviene cuando se necesitan componentes interactivos ya hechos (carrusel, menú
+   colapsable, modales) o un equipo que no domina CSS y necesita resultados rápidos. Tailwind conviene cuando hay un
+   diseño propio y una marca definida, cuando el peso importa (tráfico desde celular) y cuando se trabaja con un
+   kit de componentes que se copia igual en todas las páginas. Su costo es un HTML más largo, que se controla con
+   pocas clases @apply y con un kit bien documentado.
+
+Recomendación para Rueda Libre: Tailwind para la próxima versión del sitio. La marca ya está definida (los mismos
+seis colores y dos fuentes funcionan en @theme), casi todo el tráfico de la campaña llega desde celulares y la landing
+descarga más de 10 veces menos estilos, y el kit v0.1 ya cubre botones, cards, alertas y campos. Lo único que da
+Bootstrap y Tailwind no trae es el JavaScript del carrusel y del menú colapsable; para eso bastan unas pocas líneas
+propias o mantener solo ese componente mientras se migra.

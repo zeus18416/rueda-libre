@@ -1,1 +1,53 @@
 @import "tailwindcss";
+
+/* Tema de la marca Rueda Libre: los cinco colores del sitio v2.0 + Amarillo Farol de la campaña.
+   --color-*: initial borra la paleta genérica de Tailwind (slate, amber, sky...), así que solo
+   existen utilidades con los colores de la marca, más blanco y negro. */
+@theme {
+  --color-*: initial;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  --color-noche: #0F172A;   /* Azul Noche: fondo (sitio: --fondo) */
+  --color-niebla: #F1F5F9;  /* Niebla: texto principal (sitio: --texto) */
+  --color-bruma: #A8B5C9;   /* Bruma: texto secundario (sitio: --texto-secundario) */
+  --color-cielo: #38BDF8;   /* Azul Cielo: enlaces (sitio: --enlace) */
+  --color-ruta: #2563EB;    /* Azul Ruta: botones (sitio: --boton) */
+  --color-farol: #FFD166;   /* Amarillo Farol: color nuevo de la campaña */
+
+  --font-titulos: "Montserrat", Arial, sans-serif;
+  --font-texto: "Open Sans", Arial, sans-serif;
+}
+
+/* Botones del kit: máximo tres clases propias con @apply.
+   Orden de las clases: layout, espaciado, tipografía, color y estados. */
+@layer components {
+  .btn-principal {
+    @apply inline-block rounded-xl border-2 px-6 py-3 text-base font-bold tracking-wide
+      border-ruta bg-ruta text-white shadow-md
+      dark:border-farol dark:bg-farol dark:text-noche
+      hover:shadow-lg hover:bg-noche hover:border-noche
+      dark:hover:bg-niebla dark:hover:border-niebla
+      focus:outline-none focus:ring-4 focus:ring-ruta/50 focus:ring-offset-2 focus:ring-offset-niebla
+      dark:focus:ring-farol/60 dark:focus:ring-offset-noche;
+  }
+
+  .btn-secundario {
+    @apply inline-block rounded-xl border-2 px-6 py-3 text-base font-bold tracking-wide
+      border-noche/10 bg-noche/10 text-noche shadow-md
+      dark:border-niebla/10 dark:bg-niebla/10 dark:text-niebla
+      hover:shadow-lg hover:bg-noche/20 hover:border-noche/20
+      dark:hover:bg-niebla/20 dark:hover:border-niebla/20
+      focus:outline-none focus:ring-4 focus:ring-noche/40 focus:ring-offset-2 focus:ring-offset-niebla
+      dark:focus:ring-niebla/60 dark:focus:ring-offset-noche;
+  }
+
+  .btn-contorno {
+    @apply inline-block rounded-xl border-2 px-6 py-3 text-base font-bold tracking-wide
+      border-ruta bg-transparent text-ruta shadow-md
+      dark:border-farol dark:text-farol
+      hover:shadow-lg hover:bg-ruta/10 dark:hover:bg-farol/10
+      focus:outline-none focus:ring-4 focus:ring-ruta/50 focus:ring-offset-2 focus:ring-offset-niebla
+      dark:focus:ring-farol/60 dark:focus:ring-offset-noche;
+  }
+}

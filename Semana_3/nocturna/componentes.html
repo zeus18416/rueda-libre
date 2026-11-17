@@ -6,112 +6,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Kit de componentes Rueda Nocturna v0.1: botones, card, alertas y campos de formulario.">
     <title>Kit Rueda Nocturna v0.1 | Rueda Libre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="src/output.css">
 </head>
 
-<body class="bg-slate-950 text-slate-100">
-    <main class="mx-auto max-w-3xl px-6 py-12 space-y-12">
+<body class="font-texto bg-niebla text-noche dark:bg-noche dark:text-niebla">
+    <main class="mx-auto max-w-3xl space-y-12 px-6 py-12">
         <header class="space-y-2">
-            <p class="text-xs font-semibold uppercase tracking-widest text-amber-300">Rueda Libre · Campaña nocturna</p>
-            <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-white">Kit de componentes Rueda Nocturna v0.1</h1>
-            <p class="text-base leading-relaxed text-slate-300">
+            <p class="text-xs font-semibold uppercase tracking-widest text-ruta dark:text-farol">Rueda Libre · Campaña nocturna</p>
+            <h1 class="font-titulos text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl text-noche dark:text-niebla">Kit de componentes Rueda Nocturna v0.1</h1>
+            <p class="text-base leading-relaxed text-noche/75 dark:text-bruma">
                 Botón, card, alerta y campo de formulario con las mismas reglas de radio, espaciado y color.
-                <a href="index.html" class="font-semibold text-amber-300 underline hover:text-amber-200 focus:outline-none focus:ring-4 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-950">Volver a la landing</a>
+                <a href="index.html" class="rounded-xl font-semibold underline text-ruta dark:text-cielo hover:text-noche dark:hover:text-niebla focus:outline-none focus:ring-4 focus:ring-ruta/50 dark:focus:ring-farol/60">Volver a la landing</a>
             </p>
         </header>
 
         <!-- 1. Botones -->
         <section class="space-y-4" aria-labelledby="titulo-botones">
-            <h2 id="titulo-botones" class="text-2xl font-bold leading-tight text-white">Botones</h2>
-            <p class="text-sm text-slate-400">Principal, secundario y de contorno. Pasa el mouse o navega con Tab para ver los estados.</p>
+            <h2 id="titulo-botones" class="font-titulos text-2xl font-bold leading-tight text-noche dark:text-niebla">Botones</h2>
+            <p class="text-sm text-noche/75 dark:text-bruma">Principal, secundario y de contorno. Pasa el mouse o navega con Tab para ver los estados.</p>
             <div class="flex flex-wrap gap-4">
-                <a href="#titulo-botones" class="inline-block rounded-xl border-2 border-amber-400 bg-amber-400 px-6 py-3 text-base font-bold tracking-wide text-slate-950 shadow-md hover:border-amber-300 hover:bg-amber-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-950">
-                    Principal
-                </a>
-                <a href="#titulo-botones" class="inline-block rounded-xl border-2 border-slate-700 bg-slate-700 px-6 py-3 text-base font-bold tracking-wide text-white shadow-md hover:border-slate-600 hover:bg-slate-600 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-slate-300 focus:ring-offset-2 focus:ring-offset-slate-950">
-                    Secundario
-                </a>
-                <a href="#titulo-botones" class="inline-block rounded-xl border-2 border-amber-400 bg-transparent px-6 py-3 text-base font-bold tracking-wide text-amber-300 shadow-md hover:bg-amber-400/10 hover:text-amber-200 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-950">
-                    Contorno
-                </a>
+                <a href="#titulo-botones" class="btn-principal">Principal</a>
+                <a href="#titulo-botones" class="btn-secundario">Secundario</a>
+                <a href="#titulo-botones" class="btn-contorno">Contorno</a>
             </div>
         </section>
 
         <!-- 2. Card -->
         <section class="space-y-4" aria-labelledby="titulo-card">
-            <h2 id="titulo-card" class="text-2xl font-bold leading-tight text-white">Card de ruta</h2>
-            <p class="text-sm text-slate-400">La etiqueta de nivel cambia de color y de texto: Fácil (verde), Medio (ámbar) y Difícil (rosa).</p>
+            <h2 id="titulo-card" class="font-titulos text-2xl font-bold leading-tight text-noche dark:text-niebla">Card de ruta</h2>
+            <p class="text-sm text-noche/75 dark:text-bruma">La etiqueta de nivel cambia de color y de texto: Fácil (Azul Cielo), Medio (Amarillo Farol) y Difícil (Azul Ruta).</p>
             <div class="flex flex-wrap gap-2">
-                <span class="inline-block rounded-full border border-emerald-400/50 bg-emerald-400/15 px-3 py-1 text-xs font-bold uppercase tracking-widest text-emerald-300">Nivel: Fácil</span>
-                <span class="inline-block rounded-full border border-amber-400/50 bg-amber-400/15 px-3 py-1 text-xs font-bold uppercase tracking-widest text-amber-300">Nivel: Medio</span>
-                <span class="inline-block rounded-full border border-rose-400/50 bg-rose-400/15 px-3 py-1 text-xs font-bold uppercase tracking-widest text-rose-300">Nivel: Difícil</span>
+                <span class="inline-block rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-widest border-cielo bg-cielo/25 text-noche dark:bg-cielo/15 dark:text-niebla">Nivel: Fácil</span>
+                <span class="inline-block rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-widest border-farol bg-farol/40 text-noche dark:bg-farol/15 dark:text-niebla">Nivel: Medio</span>
+                <span class="inline-block rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-widest border-ruta bg-ruta/20 text-noche dark:bg-ruta/40 dark:text-niebla">Nivel: Difícil</span>
             </div>
 
-            <article class="w-full max-w-md overflow-hidden rounded-xl border-2 border-slate-800 bg-slate-900 shadow-md hover:border-amber-400 hover:shadow-xl hover:shadow-amber-500/20">
+            <article class="w-full max-w-md overflow-hidden rounded-xl border-2 border-noche/10 bg-white shadow-md dark:border-niebla/10 dark:bg-niebla/5 hover:border-ruta hover:shadow-xl dark:hover:border-farol">
                 <img src="img/luces-del-centro.svg" alt="Edificios del centro de Medellín con las ventanas iluminadas de noche" width="640" height="320" class="h-48 w-full object-cover">
                 <div class="space-y-4 p-6">
-                    <span class="inline-block rounded-full border border-emerald-400/50 bg-emerald-400/15 px-3 py-1 text-xs font-bold uppercase tracking-widest text-emerald-300">Nivel: Fácil</span>
-                    <h3 class="text-2xl font-bold leading-tight text-white">Luces del Centro</h3>
+                    <span class="inline-block rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-widest border-cielo bg-cielo/25 text-noche dark:bg-cielo/15 dark:text-niebla">Nivel: Fácil</span>
+                    <h3 class="font-titulos text-2xl font-bold leading-tight text-noche dark:text-niebla">Luces del Centro</h3>
                     <dl class="space-y-2">
-                        <div class="flex items-baseline justify-between gap-4 border-b border-slate-800 pb-2">
-                            <dt class="text-xs uppercase tracking-wider text-slate-400">Distancia</dt>
-                            <dd class="text-base font-semibold text-white">10 km</dd>
+                        <div class="flex items-baseline justify-between gap-4 border-b pb-2 border-noche/10 dark:border-niebla/10">
+                            <dt class="text-xs uppercase tracking-wider text-noche/70 dark:text-bruma">Distancia</dt>
+                            <dd class="text-base font-semibold text-noche dark:text-niebla">10 km</dd>
                         </div>
-                        <div class="flex items-baseline justify-between gap-4 border-b border-slate-800 pb-2">
-                            <dt class="text-xs uppercase tracking-wider text-slate-400">Duración</dt>
-                            <dd class="text-base font-semibold text-white">2 h</dd>
+                        <div class="flex items-baseline justify-between gap-4 border-b pb-2 border-noche/10 dark:border-niebla/10">
+                            <dt class="text-xs uppercase tracking-wider text-noche/70 dark:text-bruma">Duración</dt>
+                            <dd class="text-base font-semibold text-noche dark:text-niebla">2 h</dd>
                         </div>
-                        <div class="flex items-baseline justify-between gap-4 border-b border-slate-800 pb-2">
-                            <dt class="text-xs uppercase tracking-wider text-slate-400">Punto de encuentro</dt>
-                            <dd class="text-base font-semibold text-white">Sede Rueda Libre</dd>
+                        <div class="flex items-baseline justify-between gap-4 border-b pb-2 border-noche/10 dark:border-niebla/10">
+                            <dt class="text-xs uppercase tracking-wider text-noche/70 dark:text-bruma">Punto de encuentro</dt>
+                            <dd class="text-base font-semibold text-noche dark:text-niebla">Sede Rueda Libre</dd>
                         </div>
                     </dl>
-                    <p class="text-sm text-slate-400">
+                    <p class="text-sm text-noche/75 dark:text-bruma">
                         Precio por persona
-                        <span class="block text-3xl font-extrabold text-amber-300">$55.000</span>
+                        <span class="block font-titulos text-3xl font-extrabold text-ruta dark:text-farol">$55.000</span>
                     </p>
-                    <a href="index.html#rutas" aria-label="Inscríbete en Luces del Centro" class="block w-full rounded-xl border-2 border-amber-400 bg-amber-400 px-6 py-3 text-center text-base font-bold tracking-wide text-slate-950 shadow-md hover:border-amber-300 hover:bg-amber-300 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-900">
-                        Inscríbete
-                    </a>
+                    <a href="index.html#inscripcion" aria-label="Inscríbete en Luces del Centro" class="btn-principal block w-full text-center">Inscríbete</a>
                 </div>
             </article>
         </section>
 
         <!-- 3. Alertas -->
         <section class="space-y-4" aria-labelledby="titulo-alertas">
-            <h2 id="titulo-alertas" class="text-2xl font-bold leading-tight text-white">Alertas</h2>
+            <h2 id="titulo-alertas" class="font-titulos text-2xl font-bold leading-tight text-noche dark:text-niebla">Alertas</h2>
 
-            <div class="space-y-2 rounded-xl border-l-4 border-sky-400 bg-sky-400/10 p-4 shadow-md">
-                <p class="text-base font-bold text-sky-200">Información</p>
-                <p class="text-sm leading-relaxed text-slate-300">Las salidas son de jueves a sábado a las 7:00 p. m. desde la sede de Rueda Libre.</p>
+            <div class="space-y-2 rounded-xl border-l-4 p-4 border-cielo bg-cielo/10 shadow-md">
+                <p class="font-titulos text-base font-bold text-noche dark:text-niebla">Información</p>
+                <p class="text-sm leading-relaxed text-noche/75 dark:text-bruma">Las salidas son de jueves a sábado a las 7:00 p. m. desde la sede de Rueda Libre.</p>
             </div>
 
-            <div role="status" class="space-y-2 rounded-xl border-l-4 border-emerald-400 bg-emerald-400/10 p-4 shadow-md">
-                <p class="text-base font-bold text-emerald-200">Inscripción confirmada</p>
-                <p class="text-sm leading-relaxed text-slate-300">Te esperamos el jueves en la sede. Llega 20 minutos antes para ajustar tu bici y tu casco.</p>
+            <div role="status" class="space-y-2 rounded-xl border-l-4 p-4 border-ruta bg-ruta/10 shadow-md">
+                <p class="font-titulos text-base font-bold text-noche dark:text-niebla">Inscripción confirmada</p>
+                <p class="text-sm leading-relaxed text-noche/75 dark:text-bruma">Te esperamos el jueves en la sede. Llega 20 minutos antes para ajustar tu bici y tu casco.</p>
             </div>
 
-            <div class="space-y-2 rounded-xl border-l-4 border-amber-400 bg-amber-400/10 p-4 shadow-md">
-                <p class="text-base font-bold text-amber-200">Advertencia</p>
-                <p class="text-sm leading-relaxed text-slate-300">Si llueve, la ruta Luna en Las Palmas se cambia por Luces del Centro.</p>
+            <div class="space-y-2 rounded-xl border-l-4 p-4 border-farol bg-farol/10 shadow-md">
+                <p class="font-titulos text-base font-bold text-noche dark:text-niebla">Advertencia</p>
+                <p class="text-sm leading-relaxed text-noche/75 dark:text-bruma">Si llueve, la ruta Luna en Las Palmas se cambia por Luces del Centro.</p>
             </div>
         </section>
 
         <!-- 4. Campos de formulario -->
         <section class="space-y-4" aria-labelledby="titulo-campos">
-            <h2 id="titulo-campos" class="text-2xl font-bold leading-tight text-white">Campos de formulario</h2>
+            <h2 id="titulo-campos" class="font-titulos text-2xl font-bold leading-tight text-noche dark:text-niebla">Campos de formulario</h2>
 
-            <form action="#" class="max-w-md space-y-6 rounded-xl border-2 border-slate-800 bg-slate-900 p-6 shadow-md">
+            <form action="#" class="max-w-md space-y-6 rounded-xl border-2 p-6 border-noche/10 bg-white shadow-md dark:border-niebla/10 dark:bg-niebla/5">
                 <div class="space-y-2">
-                    <label for="correo" class="block text-sm font-semibold text-slate-200">Correo electrónico</label>
-                    <input id="correo" name="correo" type="email" autocomplete="email" placeholder="tunombre@correo.com" aria-describedby="ayuda-correo" class="w-full rounded-xl border-2 border-slate-700 bg-slate-950 px-4 py-3 text-base text-white shadow-md placeholder:text-slate-500 hover:border-slate-600 focus:border-amber-400 focus:outline-none focus:ring-4 focus:ring-amber-200/40">
-                    <p id="ayuda-correo" class="text-xs leading-relaxed text-slate-400">Allí te enviamos la confirmación de la inscripción.</p>
+                    <label for="correo" class="block text-sm font-semibold text-noche dark:text-niebla">Correo electrónico</label>
+                    <input id="correo" name="correo" type="email" autocomplete="email" placeholder="tunombre@correo.com" aria-describedby="ayuda-correo" class="w-full rounded-xl border-2 px-4 py-3 text-base border-noche/30 bg-white text-noche shadow-md placeholder:text-noche/60 dark:border-niebla/20 dark:bg-noche dark:text-niebla dark:placeholder:text-bruma hover:border-noche/50 dark:hover:border-niebla/40 focus:border-ruta focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:border-farol dark:focus:ring-farol/40">
+                    <p id="ayuda-correo" class="text-xs leading-relaxed text-noche/70 dark:text-bruma">Allí te enviamos la confirmación de la inscripción.</p>
                 </div>
 
                 <div class="space-y-2">
-                    <label for="celular" class="block text-sm font-semibold text-slate-200">Celular</label>
-                    <input id="celular" name="celular" type="tel" inputmode="numeric" autocomplete="tel" placeholder="3001234567" aria-describedby="ayuda-celular" class="w-full rounded-xl border-2 border-slate-700 bg-slate-950 px-4 py-3 text-base text-white shadow-md placeholder:text-slate-500 hover:border-slate-600 focus:border-amber-400 focus:outline-none focus:ring-4 focus:ring-amber-200/40">
-                    <p id="ayuda-celular" class="text-xs leading-relaxed text-slate-400">10 dígitos, sin espacios. Lo usamos solo si cambia la ruta.</p>
+                    <label for="celular" class="block text-sm font-semibold text-noche dark:text-niebla">Celular</label>
+                    <input id="celular" name="celular" type="tel" inputmode="numeric" autocomplete="tel" placeholder="3001234567" aria-describedby="ayuda-celular" class="w-full rounded-xl border-2 px-4 py-3 text-base border-noche/30 bg-white text-noche shadow-md placeholder:text-noche/60 dark:border-niebla/20 dark:bg-noche dark:text-niebla dark:placeholder:text-bruma hover:border-noche/50 dark:hover:border-niebla/40 focus:border-ruta focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:border-farol dark:focus:ring-farol/40">
+                    <p id="ayuda-celular" class="text-xs leading-relaxed text-noche/70 dark:text-bruma">10 dígitos, sin espacios. Lo usamos solo si cambia la ruta.</p>
                 </div>
             </form>
         </section>
