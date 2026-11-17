@@ -373,3 +373,61 @@ seis colores y dos fuentes funcionan en @theme), casi todo el tráfico de la cam
 descarga más de 10 veces menos estilos, y el kit v0.1 ya cubre botones, cards, alertas y campos. Lo único que da
 Bootstrap y Tailwind no trae es el JavaScript del carrusel y del menú colapsable; para eso bastan unas pocas líneas
 propias o mantener solo ese componente mientras se migra.
+
+
+DÍA 3
+
+
+MiniReto 9 - Contrarreloj 1: inscripción a Rueda Nocturna
+
+Tiempo máximo: 40 minutos.
+Tiempo real: entre 30 y 40 minutos (dentro del límite).
+Pendiente al terminar el tiempo: las pruebas. El formulario quedó completo dentro de los 40 minutos, pero no alcancé a
+probar todos los casos; las hice después del cronómetro (resultados abajo). Para la prueba de desempeño: dejar unos
+minutos al final solo para probar.
+
+Sección: <section id="inscripcion"> en index.html, después de la franja (la franja pasó a id="franja"). Todos los
+botones "Inscríbete" y el enlace "Inscripción" del encabezado llevan ahora al formulario. Encabezado h2
+"Inscríbete a Rueda Nocturna" y un texto que avisa que todo es obligatorio.
+
+Formulario agrupado en tres <fieldset> con <legend>:
+1. Tus datos
+   - Nombre completo: input type="text", required, minlength="3", autocomplete="name".
+   - Correo: input type="email", required (el navegador valida el formato).
+   - Celular: input type="tel", required, pattern="3[0-9]{9}" con title explicando la regla (10 dígitos que
+     empiezan por 3), maxlength="10", inputmode="numeric" (teclado numérico en el celular).
+2. Tu salida
+   - Ruta: <select> required con una primera opción vacía "Elige una ruta" (value="") y las tres rutas; si no se
+     cambia, el formulario no se envía.
+   - Número de acompañantes: input type="number", required, min="0", max="3", step="1".
+   - Día de salida: fieldset anidado con legend y tres radio (jueves, viernes, sábado) con el mismo name="dia";
+     required en el grupo.
+3. Tu experiencia
+   - Nivel de experiencia: tres radio (principiante, intermedio, avanzado), name="nivel", required.
+   - ¿Tienes bicicleta propia?: dos radio (sí, no), name="bici-propia", required.
+- Condiciones: checkbox required con su label.
+- Envío: <button type="submit" class="btn-principal">.
+
+Por qué cada control: select para la ruta (una opción entre tres, con nombre largo, ocupa poco); radio para día,
+nivel y bicicleta (pocas opciones, todas visibles, se elige una); number para acompañantes (cantidad con mínimo y
+máximo); checkbox para aceptar condiciones (sí/no de una sola casilla).
+
+Etiquetas: cada input, select y checkbox tiene <label for> con el mismo id; cada radio tiene su propio label for, y
+cada grupo de radios tiene un legend que lo nombra. Los textos de ayuda se unen con aria-describedby.
+
+Estilo con los campos del kit (mismas clases del input de componentes.html, también en el select):
+- Dos columnas para campos cortos desde md: cada fieldset tiene grid grid-cols-1 gap-6 md:grid-cols-2; el nombre
+  ocupa las dos (md:col-span-2), correo y celular comparten fila, ruta y acompañantes comparten fila.
+- Radios y checkbox: h-5 w-5 accent-ruta dark:accent-farol, con el mismo anillo de foco del kit.
+- Modo oscuro: dark: en caja, textos, campos y bordes, y dark:scheme-dark en el body para que los controles nativos
+  (flechas del number, lista del select, radios) también se pinten oscuros.
+- El botón ocupa todo el ancho en el celular (w-full) y su ancho normal desde md (md:w-auto).
+
+Pruebas (todas funcionaron):
+- Vacío: al enviar, el navegador marca el primer campo obligatorio (nombre) y no se envía.
+- Inválidos: nombre "Al" (2 caracteres), celular "2001234567", 5 acompañantes y demás reglas: no se envía y muestra
+  el mensaje de la regla (el del celular usa el texto del title).
+- Completo y válido: se envía (la URL cambia a ?nombre=...#inscripcion).
+- Solo teclado: Tab recorre los campos en orden; las flechas cambian la opción dentro de cada grupo de radios;
+  Espacio marca la casilla; Enter en el botón envía.
+- Vista: en el celular una columna y en escritorio dos; se ve bien en modo claro y en modo oscuro.

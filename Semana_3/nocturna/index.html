@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="src/output.css">
 </head>
 
-<body class="font-texto bg-niebla text-noche dark:bg-noche dark:text-niebla">
+<body class="font-texto bg-niebla text-noche dark:bg-noche dark:text-niebla dark:scheme-dark">
     <!-- Encabezado: apilado en el celular, en fila desde md -->
     <header class="border-b border-noche/10 bg-white dark:border-niebla/10 dark:bg-noche">
         <div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-4 md:flex-row md:justify-between">
@@ -205,11 +205,11 @@
         </section>
 
         <!-- Franja de inscripción: apilada en el celular, en fila desde md -->
-        <section id="inscripcion" class="py-12 md:py-20" aria-labelledby="titulo-inscripcion">
+        <section id="franja" class="py-12 md:py-20" aria-labelledby="titulo-franja">
             <div class="mx-auto max-w-6xl px-6">
                 <div class="flex flex-col gap-6 rounded-xl border-2 p-6 md:flex-row md:items-center md:justify-between md:p-8 border-noche/10 bg-white shadow-md dark:border-niebla/10 dark:bg-niebla/5">
                     <div class="space-y-2">
-                        <h2 id="titulo-inscripcion" class="font-titulos text-2xl font-bold leading-tight md:text-3xl text-noche dark:text-niebla">¿Listo para rodar de noche?</h2>
+                        <h2 id="titulo-franja" class="font-titulos text-2xl font-bold leading-tight md:text-3xl text-noche dark:text-niebla">¿Listo para rodar de noche?</h2>
                         <p class="text-base leading-relaxed text-noche/75 dark:text-bruma">Cupos limitados de jueves a sábado. Inscríbete y te confirmamos por correo.</p>
                     </div>
                     <div class="flex flex-wrap gap-4 md:shrink-0">
@@ -217,6 +217,124 @@
                         <a href="#rutas" class="btn-contorno">Ver rutas</a>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Inscripción: formulario con validación nativa -->
+        <section id="inscripcion" class="py-12 md:py-20" aria-labelledby="titulo-inscripcion">
+            <div class="mx-auto max-w-6xl space-y-8 px-6">
+                <div class="mx-auto max-w-3xl space-y-2 text-center">
+                    <h2 id="titulo-inscripcion" class="font-titulos text-3xl font-bold leading-tight lg:text-4xl text-noche dark:text-niebla">Inscríbete a Rueda Nocturna</h2>
+                    <p class="text-base leading-relaxed text-noche/75 dark:text-bruma">Todos los campos son obligatorios. Te confirmamos el cupo por correo.</p>
+                </div>
+
+                <form action="#inscripcion" method="get" class="mx-auto max-w-3xl space-y-8 rounded-xl border-2 p-6 md:p-8 border-noche/10 bg-white shadow-md dark:border-niebla/10 dark:bg-niebla/5">
+                    <!-- 1. Datos personales -->
+                    <fieldset class="space-y-6">
+                        <legend class="font-titulos text-xl font-bold text-noche dark:text-niebla">Tus datos</legend>
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                            <div class="space-y-2 md:col-span-2">
+                                <label for="nombre" class="block text-sm font-semibold text-noche dark:text-niebla">Nombre completo</label>
+                                <input id="nombre" name="nombre" type="text" required minlength="3" autocomplete="name" placeholder="Ana María Restrepo" aria-describedby="ayuda-nombre" class="w-full rounded-xl border-2 px-4 py-3 text-base border-noche/30 bg-white text-noche shadow-md placeholder:text-noche/60 dark:border-niebla/20 dark:bg-noche dark:text-niebla dark:placeholder:text-bruma hover:border-noche/50 dark:hover:border-niebla/40 focus:border-ruta focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:border-farol dark:focus:ring-farol/40">
+                                <p id="ayuda-nombre" class="text-xs leading-relaxed text-noche/70 dark:text-bruma">Mínimo 3 caracteres.</p>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="correo" class="block text-sm font-semibold text-noche dark:text-niebla">Correo electrónico</label>
+                                <input id="correo" name="correo" type="email" required autocomplete="email" placeholder="tunombre@correo.com" aria-describedby="ayuda-correo" class="w-full rounded-xl border-2 px-4 py-3 text-base border-noche/30 bg-white text-noche shadow-md placeholder:text-noche/60 dark:border-niebla/20 dark:bg-noche dark:text-niebla dark:placeholder:text-bruma hover:border-noche/50 dark:hover:border-niebla/40 focus:border-ruta focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:border-farol dark:focus:ring-farol/40">
+                                <p id="ayuda-correo" class="text-xs leading-relaxed text-noche/70 dark:text-bruma">Allí te enviamos la confirmación.</p>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="celular" class="block text-sm font-semibold text-noche dark:text-niebla">Celular</label>
+                                <input id="celular" name="celular" type="tel" required inputmode="numeric" maxlength="10" pattern="3[0-9]{9}" title="10 dígitos que empiecen por 3, sin espacios. Ejemplo: 3001234567" autocomplete="tel" placeholder="3001234567" aria-describedby="ayuda-celular" class="w-full rounded-xl border-2 px-4 py-3 text-base border-noche/30 bg-white text-noche shadow-md placeholder:text-noche/60 dark:border-niebla/20 dark:bg-noche dark:text-niebla dark:placeholder:text-bruma hover:border-noche/50 dark:hover:border-niebla/40 focus:border-ruta focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:border-farol dark:focus:ring-farol/40">
+                                <p id="ayuda-celular" class="text-xs leading-relaxed text-noche/70 dark:text-bruma">10 dígitos, empieza por 3, sin espacios.</p>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- 2. Salida -->
+                    <fieldset class="space-y-6">
+                        <legend class="font-titulos text-xl font-bold text-noche dark:text-niebla">Tu salida</legend>
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                            <div class="space-y-2">
+                                <label for="ruta" class="block text-sm font-semibold text-noche dark:text-niebla">Ruta</label>
+                                <select id="ruta" name="ruta" required class="w-full rounded-xl border-2 px-4 py-3 text-base border-noche/30 bg-white text-noche shadow-md dark:border-niebla/20 dark:bg-noche dark:text-niebla hover:border-noche/50 dark:hover:border-niebla/40 focus:border-ruta focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:border-farol dark:focus:ring-farol/40">
+                                    <option value="">Elige una ruta</option>
+                                    <option value="luces-del-centro">Luces del Centro · 10 km · Fácil</option>
+                                    <option value="miradores-de-la-ciudad">Miradores de la Ciudad · 16 km · Medio</option>
+                                    <option value="luna-en-las-palmas">Luna en Las Palmas · 22 km · Difícil</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="acompanantes" class="block text-sm font-semibold text-noche dark:text-niebla">Número de acompañantes</label>
+                                <input id="acompanantes" name="acompanantes" type="number" required min="0" max="3" step="1" placeholder="0" aria-describedby="ayuda-acompanantes" class="w-full rounded-xl border-2 px-4 py-3 text-base border-noche/30 bg-white text-noche shadow-md placeholder:text-noche/60 dark:border-niebla/20 dark:bg-noche dark:text-niebla dark:placeholder:text-bruma hover:border-noche/50 dark:hover:border-niebla/40 focus:border-ruta focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:border-farol dark:focus:ring-farol/40">
+                                <p id="ayuda-acompanantes" class="text-xs leading-relaxed text-noche/70 dark:text-bruma">De 0 a 3 personas.</p>
+                            </div>
+                            <fieldset class="space-y-2 md:col-span-2">
+                                <legend class="text-sm font-semibold text-noche dark:text-niebla">Día de salida</legend>
+                                <div class="flex flex-wrap gap-6">
+                                    <div class="flex items-center gap-2">
+                                        <input id="dia-jueves" name="dia" type="radio" value="jueves" required class="h-5 w-5 accent-ruta dark:accent-farol focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:ring-farol/40">
+                                        <label for="dia-jueves" class="text-base text-noche dark:text-niebla">Jueves</label>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <input id="dia-viernes" name="dia" type="radio" value="viernes" class="h-5 w-5 accent-ruta dark:accent-farol focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:ring-farol/40">
+                                        <label for="dia-viernes" class="text-base text-noche dark:text-niebla">Viernes</label>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <input id="dia-sabado" name="dia" type="radio" value="sabado" class="h-5 w-5 accent-ruta dark:accent-farol focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:ring-farol/40">
+                                        <label for="dia-sabado" class="text-base text-noche dark:text-niebla">Sábado</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+
+                    <!-- 3. Experiencia -->
+                    <fieldset class="space-y-6">
+                        <legend class="font-titulos text-xl font-bold text-noche dark:text-niebla">Tu experiencia</legend>
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                            <fieldset class="space-y-2">
+                                <legend class="text-sm font-semibold text-noche dark:text-niebla">Nivel de experiencia</legend>
+                                <div class="flex flex-wrap gap-6">
+                                    <div class="flex items-center gap-2">
+                                        <input id="nivel-principiante" name="nivel" type="radio" value="principiante" required class="h-5 w-5 accent-ruta dark:accent-farol focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:ring-farol/40">
+                                        <label for="nivel-principiante" class="text-base text-noche dark:text-niebla">Principiante</label>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <input id="nivel-intermedio" name="nivel" type="radio" value="intermedio" class="h-5 w-5 accent-ruta dark:accent-farol focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:ring-farol/40">
+                                        <label for="nivel-intermedio" class="text-base text-noche dark:text-niebla">Intermedio</label>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <input id="nivel-avanzado" name="nivel" type="radio" value="avanzado" class="h-5 w-5 accent-ruta dark:accent-farol focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:ring-farol/40">
+                                        <label for="nivel-avanzado" class="text-base text-noche dark:text-niebla">Avanzado</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="space-y-2">
+                                <legend class="text-sm font-semibold text-noche dark:text-niebla">¿Tienes bicicleta propia?</legend>
+                                <div class="flex flex-wrap gap-6">
+                                    <div class="flex items-center gap-2">
+                                        <input id="bici-si" name="bici-propia" type="radio" value="si" required class="h-5 w-5 accent-ruta dark:accent-farol focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:ring-farol/40">
+                                        <label for="bici-si" class="text-base text-noche dark:text-niebla">Sí</label>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <input id="bici-no" name="bici-propia" type="radio" value="no" class="h-5 w-5 accent-ruta dark:accent-farol focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:ring-farol/40">
+                                        <label for="bici-no" class="text-base text-noche dark:text-niebla">No</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+
+                    <!-- Condiciones y envío -->
+                    <div class="space-y-6 border-t pt-6 border-noche/10 dark:border-niebla/10">
+                        <div class="flex items-start gap-2">
+                            <input id="condiciones" name="condiciones" type="checkbox" value="acepto" required class="mt-1 h-5 w-5 shrink-0 accent-ruta dark:accent-farol focus:outline-none focus:ring-4 focus:ring-ruta/30 dark:focus:ring-farol/40">
+                            <label for="condiciones" class="text-sm leading-relaxed text-noche dark:text-niebla">Acepto las condiciones del recorrido: usar casco, chaleco reflectivo y luces durante toda la ruta y llegar a la sede 20 minutos antes de la salida.</label>
+                        </div>
+                        <button type="submit" class="btn-principal w-full cursor-pointer md:w-auto">Enviar inscripción</button>
+                    </div>
+                </form>
             </div>
         </section>
     </main>
