@@ -41,3 +41,48 @@ y uno las personaliza sobrescribiendo su CSS o sus variables. Uno utility-first 
 clases pequeñas de una sola propiedad y el componente se compone en el marcado. Con Bootstrap peleé contra sus colores
 y su Reboot; con Tailwind el diseño lo decido yo desde el principio, a cambio de un class más largo que hay que
 mantener igual en cada copia del botón.
+
+
+MiniReto 2 - Del prototipo al proyecto real: CLI y botones
+
+Instalación (dentro de nocturna/):
+npm install tailwindcss @tailwindcss/cli
+src/input.css solo tiene: @import "tailwindcss";
+.gitignore: node_modules/
+Compilación en modo observación (desde nocturna/):
+npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch
+
+index.html enlaza <link rel="stylesheet" href="src/output.css"> y ya no usa el Play CDN.
+
+Versión instalada: tailwindcss y @tailwindcss/cli 4.3.5 (npm 12.2.2, Node 26.13.1). output.css pesa unos 22 KB.
+
+Verificación de clases en output.css (búsqueda con Ctrl + F / grep):
+- Clase que uso, bg-amber-400 (botón principal): SÍ aparece.
+    .bg-amber-400 {
+      background-color: var(--color-amber-400);
+    }
+  y la variable --color-amber-400: oklch(82.8% 0.189 84.429) está en el bloque @layer theme.
+  También aparecen sus variantes con estado, por ejemplo .focus\:ring-4:focus { ... } y .hover\:border-amber-400:hover.
+- Clase que no uso, bg-pink-500: NO aparece (0 resultados). Tampoco hay rastro de .btn.
+- Comprobé todas las clases de prototipo.html, index.html y componentes.html contra output.css: están todas.
+
+Por qué pasa: la CLI de Tailwind v4 no publica una hoja con todas las clases posibles. Al compilar recorre los archivos
+del proyecto (desde la carpeta donde se ejecuta, saltando lo que está en .gitignore como node_modules), busca los
+nombres de clase que aparecen escritos y genera CSS solo para esos. bg-amber-400 aparece en los HTML, por eso está;
+bg-pink-500 no aparece en ningún archivo de nocturna/, por eso no se genera. Con --watch, cada vez que guardo un HTML
+con una clase nueva la CLI vuelve a generar output.css y la agrega. Por eso esta bitácora está fuera de nocturna/:
+si estuviera dentro, la CLI leería "bg-pink-500" en este texto y la generaría.
+
+Los tres botones (hero de index.html y componentes.html). Base común:
+inline-block rounded-xl border-2 px-6 py-3 text-base font-bold tracking-wide shadow-md hover:shadow-lg
+focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-slate-950
+- Principal: border-amber-400 bg-amber-400 text-slate-950 hover:border-amber-300 hover:bg-amber-300 focus:ring-amber-200
+- Secundario: border-slate-700 bg-slate-700 text-white hover:border-slate-600 hover:bg-slate-600 focus:ring-slate-300
+- Contorno: border-amber-400 bg-transparent text-amber-300 hover:bg-amber-400/10 hover:text-amber-200 focus:ring-amber-200
+Los tres llevan border-2 (el secundario y el principal con el mismo color del fondo) para que midan igual.
+Foco: focus:outline-none quita el contorno del navegador y focus:ring-4 + ring-offset-2 lo reemplaza con un anillo
+claro separado del botón, visible sobre el fondo oscuro.
+Prueba con teclado: en index.html, con Tab el foco recorre Inscríbete -> Ver rutas -> Qué incluye en ese orden; cada
+botón muestra el anillo claro separado del borde y Enter los activa (llevan a #rutas).
+
+Commit: se sube src/output.css porque GitHub Pages solo sirve archivos, no ejecuta la CLI. node_modules no se sube.
